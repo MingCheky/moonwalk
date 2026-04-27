@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moonwalker | Get in Touch">
+    <title>Moonwalker | Contact Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-input: rgba(255,255,255,0.03);
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-glow: rgba(99,102,241,0.3);
+            --border: rgba(255,255,255,0.08);
+            --border-focus: rgba(99,102,241,0.5);
+            --error: #ef4444;
+            --success: #10b981;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font);
+            background: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        body.lang-en .lang-ru { display: none !important; }
+        body.lang-ru .lang-en { display: none !important; }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b1b3a 0%, #0a0a0f 100%);
+        }
+        .stars { position: absolute; width: 100%; height: 100%; }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            color: var(--text-main);
+            transform: translateX(-4px);
+        }
+        .lang-switcher { position: relative; }
+        .lang-btn {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font);
+        }
+        .lang-btn:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); }
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px;
+            min-width: 140px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        .lang-dropdown.show { display: flex; }
+        .lang-option {
+            padding: 10px 14px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            text-align: left;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-family: var(--font);
+            font-size: 0.9rem;
+        }
+        .lang-option:hover, .lang-option.active {
+            background: rgba(99,102,241,0.15);
+            color: var(--text-main);
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 680px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .logo {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 10px 40px rgba(99,102,241,0.3);
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #fff, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        /* Contact Method Tabs */
+        .contact-methods {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .method-tab {
+            flex: 1;
+            padding: 16px 24px;
+            background: var(--bg-input);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-family: var(--font);
+        }
+        .method-tab:hover {
+            border-color: var(--border-focus);
+            background: rgba(255,255,255,0.05);
+        }
+        .method-tab.active {
+            border-color: var(--accent);
+            background: rgba(99,102,241,0.1);
+        }
+        .method-tab__icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .method-tab__label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .method-tab__desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Form */
+        .form-group { margin-bottom: 24px; }
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        .form-label .required {
+            color: var(--error);
+            margin-left: 4px;
+        }
+        .form-label .optional {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.85rem;
+            margin-left: 6px;
+        }
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+            font-family: var(--font);
+        }
+        .form-textarea {
+            min-height: 140px;
+            resize: vertical;
+            padding-top: 16px;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+        }
+        .form-input::placeholder, .form-textarea::placeholder { 
+            color: var(--text-muted); 
+            opacity: 0.6;
+        }
+        .form-input.error {
+            border-color: var(--error);
+        }
+        .error-message {
+            font-size: 0.8rem;
+            color: var(--error);
+            margin-top: 6px;
+            display: none;
+        }
+        .error-message.show { display: block; }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px var(--accent-glow);
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .trust-badge svg {
+            width: 18px;
+            height: 18px;
+            color: var(--success);
+        }
+
+        /* Success Screen */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+        }
+        .success-screen.show { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .success-icon {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--success), #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 10px 40px rgba(16,185,129,0.3);
+        }
+        .success-screen h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .success-screen p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .btn-primary {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        /* Messages */
+        .message {
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.error {
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #fca5a5;
+        }
+        .message.show { display: flex; }
+
+        @media (max-width: 640px) {
+            .contact-card { padding: 32px 24px; }
+            .page-header h1 { font-size: 2rem; }
+            .contact-methods { flex-direction: column; }
+            .trust-badges { flex-direction: column; gap: 16px; }
+        }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="bg-animation"><div class="stars" id="starsContainer"></div></div>
+
+    <header class="header">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 10H5M5 10l5-5M5 10l5 5"/>
+            </svg>
+            <span class="lang-en">Back to home</span>
+            <span class="lang-ru">На главную</span>
+        </a>
+        <div class="lang-switcher">
+            <button class="lang-btn" id="langToggle">
+                <span id="currentLang">EN</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+                <button class="lang-option active" data-lang="en">🇬🇧 English</button>
+                <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="logo">🌙</div>
+            <h1>
+                <span class="lang-en">Get in touch</span>
+                <span class="lang-ru">Свяжитесь с нами</span>
+            </h1>
+            <p>
+                <span class="lang-en">Have a question or need help? We're here to assist you. Fill out the form and we'll respond within 24 hours.</span>
+                <span class="lang-ru">Есть вопрос или нужна помощь? Мы здесь, чтобы помочь. Заполните форму, и мы ответим в течение 24 часов.</span>
+            </p>
+        </div>
+
+        <div class="contact-card">
+            <div id="contactMessage" class="message"></div>
+
+            <!-- Contact Method Selection -->
+            <div class="contact-methods">
+                <div class="method-tab active" onclick="selectMethod('email')" id="methodEmail">
+                    <div class="method-tab__icon">📧</div>
+                    <div class="method-tab__label">
+                        <span class="lang-en">Email</span>
+                        <span class="lang-ru">Email</span>
+                    </div>
+                    <div class="method-tab__desc">
+                        <span class="lang-en">We'll email you back</span>
+                        <span class="lang-ru">Ответим на почту</span>
+                    </div>
+                </div>
+                <div class="method-tab" onclick="selectMethod('telegram')" id="methodTelegram">
+                    <div class="method-tab__icon">✈️</div>
+                    <div class="method-tab__label">
+                        <span class="lang-en">Telegram</span>
+                        <span class="lang-ru">Telegram</span>
+                    </div>
+                    <div class="method-tab__desc">
+                        <span class="lang-en">We'll message you</span>
+                        <span class="lang-ru">Напишем в Telegram</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form with novalidate to disable browser validation -->
+            <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="lang-en">Your name</span>
+                        <span class="lang-ru">Ваше имя</span>
+                        <span class="optional">
+                            <span class="lang-en">(optional)</span>
+                            <span class="lang-ru">(необязательно)</span>
+                        </span>
+                    </label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="10" cy="7" r="4"/>
+                            <path d="M2 18c0-3 3-5 8-5s8 2 8 5"/>
+                        </svg>
+                        <input type="text" id="formName" class="form-input" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <div class="form-group" id="emailGroup">
+                    <label class="form-label">
+                        <span class="lang-en">Email address</span>
+                        <span class="lang-ru">Email</span>
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M2 6l8 5 8-5M4 4h12a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+                        </svg>
+                        <!-- Changed type to text to prevent browser popup -->
+                        <input type="text" id="formEmail" class="form-input" placeholder="name@company.com" oninput="clearError('formEmail', 'emailError')">
+                    </div>
+                    <div class="error-message" id="emailError">
+                        <span class="lang-en">Please enter a valid email</span>
+                        <span class="lang-ru">Введите корректный email</span>
+                    </div>
+                </div>
+
+                <div class="form-group" id="telegramGroup" style="display: none;">
+                    <label class="form-label">
+                        <span class="lang-en">Telegram username</span>
+                        <span class="lang-ru">Имя в Telegram</span>
+                        <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0z"/>
+                        </svg>
+                        <input type="text" id="formTelegram" class="form-input" placeholder="@username" oninput="clearError('formTelegram', 'telegramError')">
+                    </div>
+                    <div class="error-message" id="telegramError">
+                        <span class="lang-en">Please enter your Telegram username</span>
+                        <span class="lang-ru">Введите имя пользователя Telegram</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="lang-en">Message</span>
+                        <span class="lang-ru">Сообщение</span>
+                        <span class="optional">
+                            <span class="lang-en">(optional)</span>
+                            <span class="lang-ru">(необязательно)</span>
+                        </span>
+                    </label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="top: 16px;">
+                            <path d="M2 6l8 5 8-5M2 6v8a2 2 0 002 2h12a2 2 0 002-2V6"/>
+                        </svg>
+                        <textarea id="formMessage" class="form-textarea" placeholder="How can we help you?"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span class="lang-en">Send message</span>
+                    <span class="lang-ru">Отправить сообщение</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 10h10M11 6l4 4-4 4"/>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="lang-en">24h response time</span>
+                    <span class="lang-ru">Ответ за 24 часа</span>
+                </div>
+                <div class="trust-badge">
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                    <span class="lang-en">Secure & private</span>
+                    <span class="lang-ru">Безопасно</span>
+                </div>
+            </div>
+
+            <!-- Success Screen -->
+            <div id="successScreen" class="success-screen">
+                <div class="success-icon">✓</div>
+                <h2 class="lang-en">Message sent!</h2>
+                <h2 class="lang-ru">Сообщение отправлено!</h2>
+                <p class="lang-en">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                <p class="lang-ru">Спасибо за обращение. Мы свяжемся с вами в течение 24 часов.</p>
+                <a href="index.html" class="btn-primary">
+                    <span class="lang-en">Back to home</span>
+                    <span class="lang-ru">На главную</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // ⚠️ ВСТАВЬ СЮДА СВОИ ДАННЫЕ FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyDt5Yuc48wceVPHU_2fR56qFHDpVrhPCuQ",
+            authDomain: "moonwalker-57c96.firebaseapp.com",
+            projectId: "moonwalker-57c96",
+            storageBucket: "moonwalker-57c96.firebasestorage.app",
+            messagingSenderId: "33382180229",
+            appId: "1:33382180229:web:446ced45de3e92acb390ec"
+        };
+
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Generate Stars
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Language Switcher
+        const langToggle = document.getElementById('langToggle');
+        const langDropdown = document.getElementById('langDropdown');
+        const langOptions = document.querySelectorAll('.lang-option');
+        const currentLang = document.getElementById('currentLang');
+        const body = document.body;
+        let selectedMethod = 'email';
+
+        langToggle.addEventListener('click', () => langDropdown.classList.toggle('show'));
+        document.addEventListener('click', (e) => { if (!langToggle.contains(e.target) && !langDropdown.contains(e.target)) langDropdown.classList.remove('show'); });
+        langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.dataset.lang;
+                body.className = `lang-${lang}`;
+                currentLang.textContent = lang.toUpperCase();
+                langOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                langDropdown.classList.remove('show');
+                localStorage.setItem('moonwalker-lang', lang);
+            });
+        });
+        const savedLang = localStorage.getItem('moonwalker-lang');
+        if (savedLang) {
+            body.className = `lang-${savedLang}`;
+            currentLang.textContent = savedLang.toUpperCase();
+            langOptions.forEach(opt => opt.classList.toggle('active', opt.dataset.lang === savedLang));
+        }
+
+        // Select Contact Method
+        function selectMethod(method) {
+            selectedMethod = method;
+            document.querySelectorAll('.method-tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById('method' + method.charAt(0).toUpperCase() + method.slice(1)).classList.add('active');
+            
+            // Clear errors when switching
+            clearAllErrors();
+            
+            if (method === 'email') {
+                document.getElementById('emailGroup').style.display = 'block';
+                document.getElementById('telegramGroup').style.display = 'none';
+            } else {
+                document.getElementById('emailGroup').style.display = 'none';
+                document.getElementById('telegramGroup').style.display = 'block';
+            }
+        }
+
+        // Clear error when user starts typing
+        function clearError(inputId, errorId) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            input.classList.remove('error');
+            error.classList.remove('show');
+        }
+
+        // Clear all errors
+        function clearAllErrors() {
+            document.querySelectorAll('.form-input').forEach(input => input.classList.remove('error'));
+            document.querySelectorAll('.error-message').forEach(error => error.classList.remove('show'));
+        }
+
+        // Show Message
+        function showMessage(text, type) {
+            const msg = document.getElementById('contactMessage');
+            msg.textContent = text;
+            msg.className = `message ${type} show`;
+            setTimeout(() => msg.classList.remove('show'), 5000);
+        }
+
+        // Handle Form Submit
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('formName').value.trim();
+            const email = document.getElementById('formEmail').value.trim();
+            const telegram = document.getElementById('formTelegram').value.trim();
+            const message = document.getElementById('formMessage').value.trim();
+            const btn = document.getElementById('submitBtn');
+
+            // Validation
+            let hasError = false;
+            
+            if (selectedMethod === 'email') {
+                const emailError = document.getElementById('emailError');
+                // Professional email validation regex
+                const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                
+                if (!email) {
+                    document.getElementById('formEmail').classList.add('error');
+                    emailError.textContent = body.classList.contains('lang-ru') 
+                        ? 'Введите email' 
+                        : 'Please enter your email';
+                    emailError.classList.add('show');
+                    hasError = true;
+                } else if (!emailRegex.test(email)) {
+                    document.getElementById('formEmail').classList.add('error');
+                    emailError.textContent = body.classList.contains('lang-ru') 
+                        ? 'Введите корректный email (например: name@company.com)' 
+                        : 'Please enter a valid email (e.g., name@company.com)';
+                    emailError.classList.add('show');
+                    hasError = true;
+                } else {
+                    document.getElementById('formEmail').classList.remove('error');
+                    emailError.classList.remove('show');
+                }
+            } else {
+                // Telegram validation
+                const tgError = document.getElementById('telegramError');
+                
+                if (!telegram) {
+                    document.getElementById('formTelegram').classList.add('error');
+                    tgError.textContent = body.classList.contains('lang-ru') 
+                        ? 'Введите имя пользователя Telegram' 
+                        : 'Please enter your Telegram username';
+                    tgError.classList.add('show');
+                    hasError = true;
+                } else if (!telegram.startsWith('@')) {
+                    // Must start with @
+                    document.getElementById('formTelegram').classList.add('error');
+                    tgError.textContent = body.classList.contains('lang-ru') 
+                        ? 'Username должен начинаться с @' 
+                        : 'Username must start with @';
+                    tgError.classList.add('show');
+                    hasError = true;
+                } else if (!/^[a-zA-Z0-9_]{5,32}$/.test(telegram.slice(1))) {
+                    // After @: 5-32 characters, only letters, numbers, underscores
+                    document.getElementById('formTelegram').classList.add('error');
+                    tgError.textContent = body.classList.contains('lang-ru') 
+                        ? 'Username может содержать только латинские буквы, цифры и подчёркивания (5-32 символа)' 
+                        : 'Username can only contain Latin letters, numbers, and underscores (5-32 characters)';
+                    tgError.classList.add('show');
+                    hasError = true;
+                } else {
+                    document.getElementById('formTelegram').classList.remove('error');
+                    tgError.classList.remove('show');
+                }
+            }
+
+            if (hasError) return;
+
+            btn.disabled = true;
+            btn.innerHTML = `<span>${body.classList.contains('lang-ru') ? 'Отправка...' : 'Sending...'}</span>`;
+
+            try {
+                await db.collection('contact_requests').add({
+                    name: name || null,
+                    email: selectedMethod === 'email' ? email : null,
+                    telegram: selectedMethod === 'telegram' ? telegram.replace('@', '') : null,
+                    message: message || null,
+                    contactMethod: selectedMethod,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    status: 'new'
+                });
+
+                // Show success
+                document.getElementById('contactForm').style.display = 'none';
+                document.querySelector('.trust-badges').style.display = 'none';
+                document.getElementById('successScreen').classList.add('show');
+                
+            } catch (error) {
+                console.error('Contact Form Error:', error);
+                showMessage(
+                    body.classList.contains('lang-ru') ? 'Ошибка отправки. Попробуйте снова.' : 'Error sending message. Please try again.', 
+                    'error'
+                );
+                btn.disabled = false;
+                btn.innerHTML = `<span class="lang-en">Send message</span><span class="lang-ru">Отправить сообщение</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h10M11 6l4 4-4 4"/></svg>`;
+            }
+        }
+    </script>
+</body>
+</html>
