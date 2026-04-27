@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moonwalker | Help Center - Get Support and Answers">
+    <title>Moonwalker | Help Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #050510;
+            --bg-panel: #0c0c1d;
+            --bg-card: #111128;
+            --text-main: #e6e6f0;
+            --text-muted: #9ca3af;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-dark: #4f46e5;
+            --accent-glow: rgba(99,102,241,0.3);
+            --cyan: #06b6d4;
+            --purple: #a855f7;
+            --green: #10b981;
+            --glass: rgba(15, 15, 35, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-hover: rgba(255, 255, 255, 0.15);
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font);
+            background: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; transition: var(--transition); }
+        .container { width: 90%; max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+
+        body.lang-en .lang-ru { display: none !important; }
+        body.lang-ru .lang-en { display: none !important; }
+
+        /* ===== SPACE BACKGROUND ===== */
+        .space-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+            background: radial-gradient(ellipse at 50% 100%, #12123a 0%, var(--bg-deep) 60%);
+        }
+        .stars { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .star { position: absolute; border-radius: 50%; background: #fff; }
+        .star-tiny { width: 1px; height: 1px; opacity: 0.4; }
+        .star-small { width: 2px; height: 2px; opacity: 0.6; }
+        .star-medium { width: 3px; height: 3px; opacity: 0.8; }
+        .star-bright { width: 4px; height: 4px; opacity: 1; box-shadow: 0 0 6px #fff; }
+
+        .planet { position: absolute; border-radius: 50%; }
+        .planet-1 {
+            width: 200px; height: 200px; top: 8%; right: 5%;
+            background: radial-gradient(circle at 35% 35%, #c084fc, #7c3aed, #3b0764);
+            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6), 0 0 60px rgba(168,85,247,0.25);
+            animation: float1 18s ease-in-out infinite alternate;
+        }
+        .planet-2 {
+            width: 100px; height: 100px; bottom: 15%; left: 5%;
+            background: radial-gradient(circle at 35% 35%, #67e8f9, #0891b2, #164e63);
+            box-shadow: inset -8px -8px 20px rgba(0,0,0,0.6), 0 0 40px rgba(6,182,212,0.25);
+            animation: float2 14s ease-in-out infinite alternate-reverse;
+        }
+        .nebula { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.12; }
+        .nebula-1 { width: 500px; height: 500px; top: -10%; left: -10%; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); animation: pulse 12s ease-in-out infinite; }
+        .nebula-2 { width: 400px; height: 400px; bottom: 10%; right: -5%; background: radial-gradient(circle, var(--cyan) 0%, transparent 70%); animation: pulse 15s ease-in-out infinite 4s; }
+        @keyframes float1 { to { transform: translateY(-40px) translateX(10px) rotate(5deg); } }
+        @keyframes float2 { to { transform: translateY(-25px) translateX(-15px) rotate(-3deg); } }
+        @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.18; transform: scale(1.06); } }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: rgba(5,5,16,0.6); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border); transition: var(--transition);
+        }
+        .header.scrolled { background: rgba(5,5,16,0.92); }
+        .header__inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 16px; }
+        .logo { font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .logo__icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent), var(--purple)); border-radius: 10px; font-size: 1.2rem; }
+        .nav { display: flex; gap: 28px; align-items: center; }
+        .nav__link { font-weight: 500; font-size: 0.9rem; color: var(--text-muted); position: relative; padding: 4px 0; }
+        .nav__link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--accent); transition: var(--transition); }
+        .nav__link:hover, .nav__link.active { color: #fff; }
+        .nav__link:hover::after, .nav__link.active::after { width: 100%; }
+        .nav__link--cta { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); padding: 10px 22px; border-radius: 999px; color: #fff; font-weight: 600; box-shadow: 0 4px 15px var(--accent-glow); }
+        .nav__link--cta::after { display: none; }
+        .nav__link--cta:hover { transform: translateY(-2px); box-shadow: 0 6px 25px var(--accent-glow); }
+        .lang-switcher { position: relative; }
+        .lang-btn { background: var(--glass); border: 1px solid var(--glass-border); color: #fff; padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .lang-btn:hover { border-color: var(--accent); }
+        .lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--bg-panel); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 6px; min-width: 140px; display: none; flex-direction: column; gap: 2px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 10; }
+        .lang-dropdown.open { display: flex; }
+        .lang-option { background: none; border: none; color: var(--text-muted); padding: 10px 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: var(--transition); font-size: 0.9rem; font-family: var(--font); }
+        .lang-option:hover, .lang-option.active { background: rgba(99,102,241,0.15); color: #fff; }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2.5px; background: #fff; border-radius: 3px; transition: var(--transition); }
+        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            padding: 180px 0 60px; text-align: center;
+        }
+        .page-hero__title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px;
+        }
+        .page-hero__title .highlight {
+            background: linear-gradient(135deg, #fff, var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .page-hero__subtitle {
+            color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7;
+        }
+
+        /* ===== ARTICLES GRID ===== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 100px;
+        }
+        .article-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: var(--transition);
+        }
+        .article-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--glass-border-hover);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .article-card__icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(168,85,247,0.15));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+        .article-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .article-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+        .article-card__link {
+            color: var(--accent-light);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        .article-card__link:hover {
+            gap: 10px;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 100px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 24px 28px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font);
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .faq-answer-inner {
+            padding: 0 28px 24px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ===== CONTACT CTA ===== */
+        .contact-cta {
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.08));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .contact-cta h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .contact-cta p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn--primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--glass-border);
+            background: var(--bg-panel);
+            margin-top: 100px;
+        }
+        .footer__inner {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer__brand p {
+            color: var(--text-muted);
+            margin-top: 16px;
+            max-width: 300px;
+            font-size: 0.9rem;
+        }
+        .footer__col h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .footer__col a {
+            display: block;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .footer__col a:hover {
+            color: var(--accent-light);
+        }
+        .footer__bottom {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer__bottom p {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        .footer__bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer__bottom-links a {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        .footer__bottom-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up.delay-1 { transition-delay: 0.1s; }
+        .fade-up.delay-2 { transition-delay: 0.2s; }
+        .fade-up.delay-3 { transition-delay: 0.3s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .articles-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer__inner { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(5,5,16,0.97); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; align-items: center; gap: 32px; z-index: 999; }
+            .nav.nav--open { display: flex; }
+            .nav__link { font-size: 1.4rem; }
+            .mobile-menu-btn { display: flex; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+            .footer__bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="space-bg" aria-hidden="true">
+        <div class="stars" id="starsContainer"></div>
+        <div class="planet planet-1"></div>
+        <div class="planet planet-2"></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+    </div>
+
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="index.html" class="logo">
+                <div class="logo__icon">🌙</div>
+                <span>Moonwalker</span>
+            </a>
+            
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav__link">
+                    <span class="lang-en">Home</span><span class="lang-ru">Главная</span>
+                </a>
+                <a href="solutions.html" class="nav__link">
+                    <span class="lang-en">Solutions</span><span class="lang-ru">Решения</span>
+                </a>
+                <a href="pricing.html" class="nav__link">
+                    <span class="lang-en">Pricing</span><span class="lang-ru">Цены</span>
+                </a>
+                <a href="about.html" class="nav__link">
+                    <span class="lang-en">About</span><span class="lang-ru">О нас</span>
+                </a>
+                <a href="contact.html" class="nav__link">
+                    <span class="lang-en">Contact</span><span class="lang-ru">Контакты</span>
+                </a>
+                <a href="auth.html" class="nav__link nav__link--cta">
+                    <span class="lang-en">Get Started</span><span class="lang-ru">Начать</span>
+                </a>
+            </nav>
+
+            <div class="lang-switcher">
+                <button id="langToggle" class="lang-btn" aria-label="Switch Language">
+                    <span class="current-lang">EN</span>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button class="lang-option active" data-lang="en">🇬 English</button>
+                    <button class="lang-option" data-lang="ru">🇷 Русский</button>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title fade-up">
+                    <span class="lang-en">Help <span class="highlight">Center</span></span>
+                    <span class="lang-ru">Центр <span class="highlight">помощи</span></span>
+                </h1>
+                <p class="page-hero__subtitle fade-up delay-1">
+                    <span class="lang-en">Find answers, guides, and support for everything Moonwalker.</span>
+                    <span class="lang-ru">Найдите ответы, руководства и поддержку по всему Moonwalker.</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Articles Grid -->
+            <div class="articles-grid">
+                <div class="article-card fade-up">
+                    <div class="article-card__icon">🔐</div>
+                    <h3>
+                        <span class="lang-en">How to Secure Your Account</span>
+                        <span class="lang-ru">Как защитить свой аккаунт</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Learn best practices for keeping your account safe with two-factor authentication and strong passwords.</span>
+                        <span class="lang-ru">Изучите лучшие практики защиты аккаунта с помощью двухфакторной аутентификации и надёжных паролей.</span>
+                    </p>
+                    <a href="#" class="article-card__link">
+                        <span class="lang-en">Read more</span>
+                        <span class="lang-ru">Читать далее</span>
+                        →
+                    </a>
+                </div>
+
+                <div class="article-card fade-up delay-1">
+                    <div class="article-card__icon">💸</div>
+                    <h3>
+                        <span class="lang-en">Understanding Transaction Fees</span>
+                        <span class="lang-ru">Понимание комиссий за транзакции</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">A complete guide to our transparent fee structure and how to minimize costs on international transfers.</span>
+                        <span class="lang-ru">Полное руководство по нашей прозрачной структуре комиссий и как минимизировать расходы на международных переводах.</span>
+                    </p>
+                    <a href="#" class="article-card__link">
+                        <span class="lang-en">Read more</span>
+                        <span class="lang-ru">Читать далее</span>
+                        →
+                    </a>
+                </div>
+
+                <div class="article-card fade-up delay-2">
+                    <div class="article-card__icon">🌍</div>
+                    <h3>
+                        <span class="lang-en">Sending Money Internationally</span>
+                        <span class="lang-ru">Отправка денег за границу</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Step-by-step guide to sending money to 150+ countries with the best exchange rates.</span>
+                        <span class="lang-ru">Пошаговое руководство по отправке денег в 150+ стран с лучшими курсами обмена.</span>
+                    </p>
+                    <a href="#" class="article-card__link">
+                        <span class="lang-en">Read more</span>
+                        <span class="lang-ru">Читать далее</span>
+                        →
+                    </a>
+                </div>
+
+                <div class="article-card fade-up">
+                    <div class="article-card__icon">📱</div>
+                    <h3>
+                        <span class="lang-en">Mobile App Features</span>
+                        <span class="lang-ru">Функции мобильного приложения</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Discover all the features available in our iOS and Android apps for managing payments on the go.</span>
+                        <span class="lang-ru">Откройте все функции наших приложений для iOS и Android для управления платежами на ходу.</span>
+                    </p>
+                    <a href="#" class="article-card__link">
+                        <span class="lang-en">Read more</span>
+                        <span class="lang-ru">Читать далее</span>
+                        →
+                    </a>
+                </div>
+
+                <div class="article-card fade-up delay-1">
+                    <div class="article-card__icon">🔄</div>
+                    <h3>
+                        <span class="lang-en">Currency Exchange Guide</span>
+                        <span class="lang-ru">Руководство по обмену валют</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">How to exchange currencies at the best rates and avoid hidden fees in your transactions.</span>
+                        <span class="lang-ru">Как обменивать валюты по лучшим курсам и избегать скрытых комиссий в ваших транзакциях.</span>
+                    </p>
+                    <a href="#" class="article-card__link">
+                        <span class="lang-en">Read more</span>
+                        <span class="lang-ru">Читать далее</span>
+                        →
+                    </a>
+                </div>
+
+                <div class="article-card fade-up delay-2">
+                    <div class="article-card__icon">⚡</div>
+                    <h3>
+                        <span class="lang-en">Speeding Up Your Transfers</span>
+                        <span class="lang-ru">Ускорение ваших переводов</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Tips and tricks to ensure your payments are processed as quickly as possible.</span>
+                        <span class="lang-ru">Советы и рекомендации для максимально быстрой обработки ваших платежей.</span>
+                    </p>
+                    <a href="#" class="article-card__link">
+                        <span class="lang-en">Read more</span>
+                        <span class="lang-ru">Читать далее</span>
+                        →
+                    </a>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <div class="section-header fade-up">
+                    <h2>
+                        <span class="lang-en">Frequently Asked Questions</span>
+                        <span class="lang-ru">Часто задаваемые вопросы</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Quick answers to common questions</span>
+                        <span class="lang-ru">Быстрые ответы на распространённые вопросы</span>
+                    </p>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="lang-en">How do I create an account?</span>
+                        <span class="lang-ru">Как создать аккаунт?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="lang-en">Click the "Get Started" button, fill in your email and create a password. You'll receive a verification email to confirm your account. The whole process takes less than 2 minutes.</span>
+                            <span class="lang-ru">Нажмите кнопку "Начать", введите email и создайте пароль. Вы получите письмо для подтверждения аккаунта. Весь процесс занимает менее 2 минут.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up delay-1">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="lang-en">What currencies do you support?</span>
+                        <span class="lang-ru">Какие валюты вы поддерживаете?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="lang-en">We support 50+ currencies including USD, EUR, GBP, JPY, and many more. You can hold, exchange, and send money in multiple currencies from one account.</span>
+                            <span class="lang-ru">Мы поддерживаем 50+ валют, включая USD, EUR, GBP, JPY и многие другие. Вы можете хранить, обменивать и отправлять деньги в нескольких валютах из одного аккаунта.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up delay-2">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="lang-en">How long do transfers take?</span>
+                        <span class="lang-ru">Сколько времени занимают переводы?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="lang-en">Most transfers are completed in under 0.3 seconds. International transfers typically arrive within 1-2 business days, depending on the destination country and payment method.</span>
+                            <span class="lang-ru">Большинство переводов завершаются менее чем за 0.3 секунды. Международные переводы обычно поступают в течение 1-2 рабочих дней в зависимости от страны назначения и способа оплаты.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="lang-en">What are your fees?</span>
+                        <span class="lang-ru">Какие у вас комиссии?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="lang-en">We charge competitive fees starting from 1.5% for domestic transfers and 2.5% for international. Check our Pricing page for detailed information. No hidden fees, ever.</span>
+                            <span class="lang-ru">Мы взимаем конкурентные комиссии от 1.5% за внутренние переводы и 2.5% за международные. Подробная информация на странице Тарифы. Никаких скрытых комиссий.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up delay-1">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="lang-en">Is my money safe with Moonwalker?</span>
+                        <span class="lang-ru">Безопасны ли мои деньги в Moonwalker?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="lang-en">Absolutely. We use bank-grade 256-bit encryption, are PCI DSS Level 1 certified, and comply with all international security standards. Your funds are protected and insured.</span>
+                            <span class="lang-ru">Абсолютно. Мы используем банковское шифрование 256-bit, сертифицированы по стандарту PCI DSS Level 1 и соответствуем всем международным стандартам безопасности. Ваши средства защищены и застрахованы.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-up delay-2">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span class="lang-en">How do I contact support?</span>
+                        <span class="lang-ru">Как связаться с поддержкой?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <span class="lang-en">You can reach our support team 24/7 through our Contact page, email at support@moonwalker.com, or use the live chat feature in your account dashboard.</span>
+                            <span class="lang-ru">Вы можете связаться с нашей командой поддержки 24/7 через страницу Контакты, email support@moonwalker.com или использовать чат в панели управления аккаунтом.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta fade-up">
+                <h2>
+                    <span class="lang-en">Still need help?</span>
+                    <span class="lang-ru">Всё ещё нужна помощь?</span>
+                </h2>
+                <p>
+                    <span class="lang-en">Our support team is here to help you 24/7. Get in touch and we'll respond as soon as possible.</span>
+                    <span class="lang-ru">Наша команда поддержки здесь, чтобы помочь вам 24/7. Свяжитесь с нами, и мы ответим как можно скорее.</span>
+                </p>
+                <a href="contact.html" class="btn btn--primary">
+                    <span class="lang-en">Contact Support</span>
+                    <span class="lang-ru">Связаться с поддержкой</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__col footer__brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo__icon">🌙</div>
+                        <span>Moonwalker</span>
+                    </a>
+                    <p>
+                        <span class="lang-en">Next-gen payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span>
+                        <span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span>
+                    </p>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Product</span><span class="lang-ru">Продукт</span></h4>
+                    <a href="solutions.html"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                    <a href="#"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Company</span><span class="lang-ru">Компания</span></h4>
+                    <a href="about.html"><span class="lang-en">About</span><span class="lang-ru">О нас</span></a>
+                    <a href="blog.html"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Support</span><span class="lang-ru">Поддержка</span></h4>
+                    <a href="help.html"><span class="lang-en">Help Center</span><span class="lang-ru">Центр помощи</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Moonwalker Financial Technologies. All rights reserved.</p>
+                <div class="footer__bottom-links">
+                    <a href="privacy.html"><span class="lang-en">Privacy</span><span class="lang-ru">Конфиденциальность</span></a>
+                    <a href="terms.html"><span class="lang-en">Terms</span><span class="lang-ru">Условия</span></a>
+                    <a href="cookies.html"><span class="lang-en">Cookies</span><span class="lang-ru">Куки</span></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate stars
+        (function() {
+            const container = document.getElementById('starsContainer');
+            if (!container) return;
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                const classes = ['star-tiny', 'star-small', 'star-medium', 'star-bright'];
+                star.className = 'star ' + classes[Math.floor(Math.random() * classes.length)];
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                container.appendChild(star);
+            }
+        })();
+
+        // Language Switcher
+        const langToggle = document.getElementById('langToggle');
+        const langDropdown = document.getElementById('langDropdown');
+        const langOptions = document.querySelectorAll('.lang-option');
+        const currentLangSpan = document.querySelector('.current-lang');
+
+        langToggle.addEventListener('click', function(e) { e.stopPropagation(); langDropdown.classList.toggle('open'); });
+        document.addEventListener('click', function(e) { if (!langToggle.contains(e.target) && !langDropdown.contains(e.target)) { langDropdown.classList.remove('open'); } });
+        langOptions.forEach(function(opt) {
+            opt.addEventListener('click', function() {
+                var lang = opt.getAttribute('data-lang');
+                document.body.className = 'lang-' + lang;
+                currentLangSpan.textContent = lang.toUpperCase();
+                langOptions.forEach(function(o) { o.classList.remove('active'); });
+                opt.classList.add('active');
+                langDropdown.classList.remove('open');
+                localStorage.setItem('moonwalker-lang', lang);
+            });
+        });
+        var savedLang = localStorage.getItem('moonwalker-lang');
+        if (savedLang) {
+            document.body.className = 'lang-' + savedLang;
+            currentLangSpan.textContent = savedLang.toUpperCase();
+            langOptions.forEach(function(o) { o.classList.toggle('active', o.getAttribute('data-lang') === savedLang); });
+        }
+
+        // Mobile Menu
+        var mobileBtn = document.getElementById('mobileMenuBtn');
+        var nav = document.getElementById('mainNav');
+        mobileBtn.addEventListener('click', function() { nav.classList.toggle('nav--open'); mobileBtn.classList.toggle('active'); });
+        nav.querySelectorAll('.nav__link').forEach(function(link) { link.addEventListener('click', function() { nav.classList.remove('nav--open'); mobileBtn.classList.remove('active'); }); });
+
+        // Header scroll
+        var header = document.getElementById('header');
+        window.addEventListener('scroll', function() { header.classList.toggle('scrolled', window.scrollY > 50); });
+
+        // FAQ Toggle
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const answer = btn.nextElementSibling;
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+                faq.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        }
+
+        // Scroll Animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+    </script>
+</body>
+</html>
