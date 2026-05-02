@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with Moonwalker — support, sales, partnerships, and press contacts.">
-    <title>Contact · Moonwalker</title>
+    <meta name="description" content="Submit your registration application to Moonwalker.">
+    <title>Registration Application · Moonwalker</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,36 +25,20 @@
         }
 
         .contact-grid {
-            display: grid; grid-template-columns: 1fr 1.4fr;
-            gap: 48px; align-items: start;
+            display: flex;
+            justify-content: center;
         }
         .contact-info-card {
-            background: var(--glass); border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg); padding: 32px;
-            backdrop-filter: blur(14px);
+            display: none;
         }
-        .contact-info-item {
-            display: flex; gap: 14px;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .contact-info-item:last-child { border-bottom: none; }
-        .contact-info-icon {
-            width: 40px; height: 40px;
-            border-radius: 10px; flex-shrink: 0;
-            background: rgba(99, 102, 241, 0.15);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--accent-light);
-        }
-        .contact-info-icon svg { width: 20px; height: 20px; }
-        .contact-info-item h4 { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
-        .contact-info-item p { color: #fff; font-weight: 500; font-size: 0.95rem; }
-        .contact-info-item a { color: var(--accent-light); }
-        .contact-info-item a:hover { color: #fff; }
-
         .contact-form-card {
-            background: var(--glass); border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg); padding: 36px;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
             backdrop-filter: blur(14px);
         }
         .contact-form-card h2 { font-size: 1.4rem; margin-bottom: 8px; letter-spacing: -0.01em; }
@@ -122,8 +107,8 @@
         .success-state p { color: var(--text-soft); margin-bottom: 20px; }
 
         @media (max-width: 900px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 24px; }
             .form-row { grid-template-columns: 1fr; }
+            .contact-form-card { padding: 28px 20px; }
         }
     </style>
 
@@ -190,49 +175,26 @@
     <main>
         <section class="page-hero">
             <div class="container">
-                <div class="section__label fade-up"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></div>
-                <h1 class="fade-up delay-1"><span class="lang-en">Get in <span class="accent">touch</span></span><span class="lang-ru">Свяжитесь <span class="accent">с нами</span></span></h1>
-                <p class="fade-up delay-2"><span class="lang-en">Our team responds within one business day — usually faster.</span><span class="lang-ru">Наша команда отвечает в течение одного рабочего дня — обычно быстрее.</span></p>
+                <div class="section__label fade-up"><span class="lang-en">Registration</span><span class="lang-ru">Регистрация</span></div>
+                <h1 class="fade-up delay-1"><span class="lang-en">Submit a registration application</span><span class="lang-ru">Направить заявку на регистрацию</span></h1>
+                <p class="fade-up delay-2"><span class="lang-en">Submit your registration application. We will review it within 7 days.</span><span class="lang-ru">Заполните заявку на регистрацию, рассмотрим в течение 7 дней.</span></p>
             </div>
         </section>
 
         <section class="section" style="padding-top: 30px;">
             <div class="container">
                 <div class="contact-grid">
-                    <!-- LEFT: Info -->
-                    <div class="contact-info-card fade-up">
-                        <h3 style="font-size: 1.15rem; margin-bottom: 20px; letter-spacing: -0.01em;"><span class="lang-en">Reach us</span><span class="lang-ru">Свяжитесь с нами</span></h3>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p><a href="mailto:hello@moonwalker.com">hello@moonwalker.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                            </div>
-                            <div>
-                                <h4><span class="lang-en">Live chat</span><span class="lang-ru">Чат</span></h4>
-                                <p><span class="lang-en">Available 24/7 in your dashboard</span><span class="lang-ru">Доступен 24/7 в кабинете</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT: Form -->
-                    <div class="contact-form-card fade-up delay-1">
+                    <!-- Registration form only -->
+                    <div class="contact-form-card fade-up">
                         <div id="contactFormWrap">
-                            <h2><span class="lang-en">Send us a message</span><span class="lang-ru">Отправьте сообщение</span></h2>
-                            <p><span class="lang-en">Fill in the form below — we'll respond shortly.</span><span class="lang-ru">Заполните форму ниже — мы скоро ответим.</span></p>
+                            <h2><span class="lang-en">Registration Application</span><span class="lang-ru">Заявка на регистрацию</span></h2>
+                            <p><span class="lang-en">Please complete the form below. A response will be sent to the email address you provide.</span><span class="lang-ru">Заполните форму ниже. Ответ будет направлен на указанный вами адрес электронной почты.</span></p>
                             <form id="contactForm" novalidate>
                                 <div class="form-row">
                                     <div class="form-field">
-                                        <label for="cName"><span class="lang-en">Full name</span><span class="lang-ru">Имя</span></label>
+                                        <label for="cName"><span class="lang-en">Full name / Company name</span><span class="lang-ru">Имя / Название компании</span></label>
                                         <input type="text" id="cName" required 
-                                               data-placeholder-en="Jane Cosmos"
+                                               data-placeholder-en="Jane Cosmos or Moonwalker Inc"
                                                data-placeholder-ru="Иван Иванов или ООО Ромашка">
                                     </div>
                                     <div class="form-field">
@@ -243,25 +205,22 @@
                                     </div>
                                 </div>
                                 <div class="form-field">
-                                    <label for="cTopic"><span class="lang-en">Topic</span><span class="lang-ru">Тема</span></label>
+                                    <label for="cTopic"><span class="lang-en">Registration type</span><span class="lang-ru">Тип регистрации</span></label>
                                     <select id="cTopic" required>
-                                        <option value="" disabled selected id="topicDefaultOption">Choose a topic…</option>
-                                        <option value="sales"><span class="lang-en">Sales inquiry</span><span class="lang-ru">Продажи</span></option>
-                                        <option value="support"><span class="lang-en">Account support</span><span class="lang-ru">Поддержка</span></option>
-                                        <option value="partnership"><span class="lang-en">Partnership</span><span class="lang-ru">Партнёрство</span></option>
-                                        <option value="press"><span class="lang-en">Press</span><span class="lang-ru">Пресса</span></option>
-                                        <option value="other"><span class="lang-en">Other</span><span class="lang-ru">Другое</span></option>
+                                        <option value="" disabled selected id="topicDefaultOption">Choose registration type…</option>
+                                        <option value="individual" data-en="Individual account" data-ru="Личный аккаунт">Individual account</option>
+                                        <option value="business" data-en="Business account" data-ru="Бизнес аккаунт">Business account</option>
                                     </select>
                                 </div>
                                 <div class="form-field">
-                                    <label for="cMessage"><span class="lang-en">Message</span><span class="lang-ru">Сообщение</span></label>
-                                    <textarea id="cMessage" required rows="5" 
-                                              data-placeholder-en="How can we help you?"
-                                              data-placeholder-ru="Чем мы можем вам помочь?"></textarea>
+                                    <label for="cMessage"><span class="lang-en">Additional information (optional)</span><span class="lang-ru">Дополнительная информация (необязательно)</span></label>
+                                    <textarea id="cMessage" rows="5" 
+                                              data-placeholder-en="Any additional details about your business or expected transaction volume..."
+                                              data-placeholder-ru="Любые дополнительные детали о вашем бизнесе или ожидаемом объёме транзакций..."></textarea>
                                 </div>
                                 <button type="submit" class="btn btn--primary btn--full" id="submitBtn">
-                                    <span class="lang-en">Send message</span>
-                                    <span class="lang-ru">Отправить</span>
+                                    <span class="lang-en">Submit Application</span>
+                                    <span class="lang-ru">Подать заявку</span>
                                 </button>
                             </form>
                         </div>
@@ -269,9 +228,9 @@
                             <div class="success-state__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                             </div>
-                            <h3><span class="lang-en">Message sent!</span><span class="lang-ru">Сообщение отправлено!</span></h3>
-                            <p><span class="lang-en">Thanks for reaching out. We'll get back to you shortly.</span><span class="lang-ru">Спасибо! Мы скоро ответим.</span></p>
-                            <button type="button" class="btn btn--outline" id="sendAnother"><span class="lang-en">Send another</span><span class="lang-ru">Отправить ещё</span></button>
+                            <h3><span class="lang-en">Application submitted!</span><span class="lang-ru">Заявка отправлена!</span></h3>
+                            <p><span class="lang-en">We will review your application within 7 days. You will receive a response via email.</span><span class="lang-ru">Мы рассмотрим вашу заявку в течение 7 дней. Ответ придёт на указанную почту.</span></p>
+                            <button type="button" class="btn btn--outline" id="sendAnother"><span class="lang-en">Submit another</span><span class="lang-ru">Отправить ещё</span></button>
                         </div>
                     </div>
                 </div>
@@ -327,7 +286,7 @@
     <!-- Main JS (language, menu, stars) -->
     <script src="assets/main.js"></script>
 
-    <!-- Contact form handler with Firebase -->
+    <!-- Registration form handler with Firebase -->
     <script>
         // Firebase Config
         const firebaseConfig = {
@@ -354,7 +313,7 @@
             const defaultOption = document.getElementById('topicDefaultOption');
             if (!defaultOption) return;
             const isRu = document.body.classList.contains('lang-ru');
-            defaultOption.textContent = isRu ? 'Выберите тему…' : 'Choose a topic…';
+            defaultOption.textContent = isRu ? 'Выберите тип регистрации…' : 'Choose registration type…';
         }
 
         // Form submit handler
@@ -364,13 +323,13 @@
                 
                 const name = document.getElementById('cName')?.value.trim() || '';
                 const email = document.getElementById('cEmail')?.value.trim() || '';
-                const topic = document.getElementById('cTopic')?.value || '';
+                const registrationType = document.getElementById('cTopic')?.value || '';
                 const message = document.getElementById('cMessage')?.value.trim() || '';
                 
                 // Validation
-                if (!name || !email || !topic || !message) {
+                if (!name || !email || !registrationType) {
                     const lang = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
-                    const errorMsg = lang === 'ru' ? 'Заполните все поля.' : 'Please fill in all fields.';
+                    const errorMsg = lang === 'ru' ? 'Заполните обязательные поля.' : 'Please fill in all required fields.';
                     if (window.toast) {
                         window.toast(errorMsg, 'error');
                     } else {
@@ -383,17 +342,17 @@
                 const submitBtn = contactForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="lang-en">Sending...</span><span class="lang-ru">Отправка...</span>';
+                submitBtn.innerHTML = '<span class="lang-en">Submitting...</span><span class="lang-ru">Отправка...</span>';
                 
                 try {
-                    // Save to Firestore
-                    await db.collection('contacts').add({
+                    // Save registration application to Firestore
+                    await db.collection('registration_applications').add({
                         name: name,
                         email: email,
-                        topic: topic,
-                        message: message,
+                        registrationType: registrationType,
+                        additionalInfo: message || '',
+                        status: 'pending',
                         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        status: 'new',
                         source: window.location.pathname
                     });
                     
@@ -405,11 +364,11 @@
                     updateSelectDefaultText();
                     
                 } catch (error) {
-                    console.error('Error saving contact:', error);
+                    console.error('Error saving registration application:', error);
                     const lang = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
                     const errorMsg = lang === 'ru' 
-                        ? 'Ошибка при отправке. Пожалуйста, попробуйте позже.' 
-                        : 'Error sending message. Please try again later.';
+                        ? 'Ошибка при отправке заявки. Пожалуйста, попробуйте позже.' 
+                        : 'Error submitting application. Please try again later.';
                     if (window.toast) {
                         window.toast(errorMsg, 'error');
                     } else {
@@ -422,7 +381,7 @@
             });
         }
         
-        // "Send another" button handler
+        // "Submit another" button handler
         if (sendAnotherBtn) {
             sendAnotherBtn.addEventListener('click', function() {
                 if (successDiv) successDiv.classList.remove('show');
@@ -438,10 +397,10 @@
             });
             updateSelectDefaultText();
             
-            // Update options text for language change
+            // Update options text for language change using data-attributes
             document.querySelectorAll('#cTopic option:not([id="topicDefaultOption"])').forEach(option => {
-                const enText = option.querySelector('.lang-en')?.textContent;
-                const ruText = option.querySelector('.lang-ru')?.textContent;
+                const enText = option.getAttribute('data-en');
+                const ruText = option.getAttribute('data-ru');
                 if (enText && ruText) {
                     option.textContent = lang === 'en' ? enText : ruText;
                 }
@@ -457,3 +416,4 @@
     </script>
 </body>
 </html>
+```
