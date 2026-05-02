@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bank-grade security at Moonwalker — PCI DSS Level 1, SOC 2, ISO 27001, layered defense.">
+    <title>Security · Moonwalker</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        .page-hero { padding: 160px 0 60px; text-align: center; }
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 700; line-height: 1.1; letter-spacing: -0.025em;
+            max-width: 880px; margin: 18px auto 22px;
+        }
+        .page-hero p { color: var(--text-soft); font-size: 1.1rem; max-width: 640px; margin: 0 auto; }
+
+        .cert-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+            max-width: 980px; margin: 0 auto;
+        }
+        .cert-badge {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius); padding: 24px 18px;
+            text-align: center; transition: var(--transition);
+            backdrop-filter: blur(14px);
+        }
+        .cert-badge:hover {
+            transform: translateY(-3px); border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+        .cert-badge__icon {
+            width: 48px; height: 48px; margin: 0 auto 14px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(34, 211, 238, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cert-badge__icon svg { width: 24px; height: 24px; color: var(--accent-light); }
+        .cert-badge h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+        .cert-badge p { color: var(--text-muted); font-size: 0.78rem; line-height: 1.5; }
+
+        .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+        .pillar {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg); padding: 32px 28px;
+            transition: var(--transition); backdrop-filter: blur(14px);
+        }
+        .pillar:hover { transform: translateY(-4px); border-color: var(--glass-border-strong); }
+        .pillar__icon {
+            width: 52px; height: 52px; border-radius: 13px; margin-bottom: 18px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(34, 211, 238, 0.12));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-light);
+        }
+        .pillar__icon svg { width: 26px; height: 26px; }
+        .pillar h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+        .pillar p { color: var(--text-soft); line-height: 1.7; font-size: 0.94rem; margin-bottom: 14px; }
+        .pillar ul { margin-left: 18px; color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+        .layered-defense {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg); padding: 40px;
+            backdrop-filter: blur(14px);
+        }
+        .defense-list { display: flex; flex-direction: column; gap: 14px; }
+        .defense-item {
+            display: flex; gap: 18px; align-items: flex-start;
+            padding-bottom: 16px; border-bottom: 1px solid var(--glass-border);
+        }
+        .defense-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .defense-num {
+            width: 32px; height: 32px; flex-shrink: 0;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #fff; font-size: 0.85rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .defense-content h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+        .defense-content p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .cert-grid { grid-template-columns: repeat(2, 1fr); }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .layered-defense { padding: 28px 20px; }
+        }
+    </style>
+
+</head>
+<body class="lang-en">
+    <div class="space-bg" aria-hidden="true">
+        <div class="stars-layer" data-count="50" data-depth="0.4"></div>
+        <div class="stars-layer" data-count="40" data-depth="0.8"></div>
+        <div class="stars-layer" data-count="25" data-depth="1.4"></div>
+        <div class="moon"><span class="moon-crater-3"></span></div>
+        <div class="planet planet-blue"></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="shooting-star ss-1"></div>
+        <div class="shooting-star ss-2"></div>
+        <div class="shooting-star ss-3"></div>
+        <div class="shooting-star ss-4"></div>
+        <div class="shooting-star ss-5"></div>
+        <div class="dust-layer"></div>
+        <div class="comet">
+            <div class="comet__trail"></div>
+            <div class="comet__head"></div>
+        </div>
+        <div class="satellite"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <!-- left solar panel -->
+            <rect x="0" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="3" y1="11" x2="3" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="6" y1="11" x2="6" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <!-- right solar panel -->
+            <rect x="19" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="22" y1="11" x2="22" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="25" y1="11" x2="25" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <!-- body -->
+            <rect x="10" y="9" width="8" height="10" fill="#818cf8" stroke="#e8eaf6" stroke-width="1" rx="1.5"/>
+            <!-- antenna -->
+            <line x1="14" y1="9" x2="14" y2="4" stroke="#e8eaf6" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="14" cy="3" r="1.2" fill="#fef3c7"/>
+        </svg></div>
+    </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Moonwalker" class="logo__icon">
+                <span>Moonwalker</span>
+            </a>
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav__link"><span class="lang-en">Home</span><span class="lang-ru">Главная</span></a>
+                <a href="solutions.html" class="nav__link "><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                <a href="security.html" class="nav__link active"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                <a href="pricing.html" class="nav__link "><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                <a href="blog.html" class="nav__link "><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                <a href="contact.html" class="nav__link "><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                <a href="auth.html" class="nav__link nav__cta"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
+            </nav>
+            <div class="lang-switcher">
+                <button id="langToggle" class="lang-btn"><span class="current-lang">EN</span></button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button class="lang-option active" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="ru">Русский</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="section__label fade-up"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></div>
+                <h1 class="fade-up delay-1"><span class="lang-en">Security at the <span class="accent">core</span> of everything</span><span class="lang-ru">Безопасность в <span class="accent">основе</span> всего</span></h1>
+                <p class="fade-up delay-2"><span class="lang-en">Defense-in-depth, regulator-grade compliance, and a relentless focus on protecting your money and data.</span><span class="lang-ru">Эшелонированная защита, соответствие регуляторам и непрерывная защита ваших денег и данных.</span></p>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section class="section" style="padding-top: 30px;">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label"><span class="lang-en">Certifications</span><span class="lang-ru">Сертификации</span></div>
+                    <h2 class="section__title"><span class="lang-en">Audited and <span class="accent">accredited</span></span><span class="lang-ru">Проверено и <span class="accent">аккредитовано</span></span></h2>
+                </div>
+                <div class="cert-grid">
+                    <div class="cert-badge fade-up">
+                        <div class="cert-badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                        <h3>PCI DSS Level 1</h3>
+                        <p><span class="lang-en">Highest tier card industry standard, audited annually.</span><span class="lang-ru">Высший уровень PCI, ежегодный аудит.</span></p>
+                    </div>
+                    <div class="cert-badge fade-up delay-1">
+                        <div class="cert-badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <h3>SOC 2 Type II</h3>
+                        <p><span class="lang-en">Independently audited security &amp; availability controls.</span><span class="lang-ru">Независимый аудит контролей безопасности.</span></p>
+                    </div>
+                    <div class="cert-badge fade-up delay-2">
+                        <div class="cert-badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                        <h3>ISO 27001</h3>
+                        <p><span class="lang-en">International information security management standard.</span><span class="lang-ru">Международный стандарт управления ИБ.</span></p>
+                    </div>
+                    <div class="cert-badge fade-up delay-3">
+                        <div class="cert-badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.83 0 5.36 1.32 7 3.36"/></svg></div>
+                        <h3>GDPR &amp; CCPA</h3>
+                        <p><span class="lang-en">Privacy-compliant by design, with full data subject rights.</span><span class="lang-ru">Соответствие GDPR и CCPA с правами субъектов данных.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PILLARS -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label"><span class="lang-en">Three Pillars</span><span class="lang-ru">Три столпа</span></div>
+                    <h2 class="section__title"><span class="lang-en">Our security <span class="accent">philosophy</span></span><span class="lang-ru">Наша <span class="accent">философия</span> безопасности</span></h2>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar fade-up">
+                        <div class="pillar__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Encryption Everywhere</span><span class="lang-ru">Шифрование везде</span></h3>
+                        <p><span class="lang-en">All data is encrypted at rest and in transit using military-grade AES-256.</span><span class="lang-ru">Все данные шифруются в покое и при передаче AES-256.</span></p>
+                        <ul>
+                            <li><span class="lang-en">TLS 1.3 for all connections</span><span class="lang-ru">TLS 1.3 для всех соединений</span></li>
+                            <li><span class="lang-en">HSM-backed key management</span><span class="lang-ru">Управление ключами через HSM</span></li>
+                            <li><span class="lang-en">Tokenization of card data</span><span class="lang-ru">Токенизация данных карт</span></li>
+                            <li><span class="lang-en">Per-tenant key isolation</span><span class="lang-ru">Изоляция ключей по клиентам</span></li>
+                        </ul>
+                    </div>
+                    <div class="pillar fade-up delay-1">
+                        <div class="pillar__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        </div>
+                        <h3><span class="lang-en">AI-Driven Detection</span><span class="lang-ru">ИИ-обнаружение</span></h3>
+                        <p><span class="lang-en">Machine-learning models analyze billions of signals in real time to stop fraud before it happens.</span><span class="lang-ru">ML-модели анализируют миллиарды сигналов в реальном времени, чтобы остановить фрод до его возникновения.</span></p>
+                        <ul>
+                            <li><span class="lang-en">Real-time transaction scoring</span><span class="lang-ru">Скоринг транзакций в реальном времени</span></li>
+                            <li><span class="lang-en">Behavioral biometrics</span><span class="lang-ru">Поведенческая биометрия</span></li>
+                            <li><span class="lang-en">Device fingerprinting</span><span class="lang-ru">Цифровой отпечаток устройства</span></li>
+                            <li><span class="lang-en">Adaptive 3-D Secure 2.x</span><span class="lang-ru">Адаптивный 3-D Secure 2.x</span></li>
+                        </ul>
+                    </div>
+                    <div class="pillar fade-up delay-2">
+                        <div class="pillar__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <h3><span class="lang-en">24/7 Operations</span><span class="lang-ru">Операции 24/7</span></h3>
+                        <p><span class="lang-en">A dedicated security team monitors infrastructure around the clock with sub-minute response times.</span><span class="lang-ru">Команда безопасности следит круглосуточно с реакцией менее минуты.</span></p>
+                        <ul>
+                            <li><span class="lang-en">SOC staffed 24/7/365</span><span class="lang-ru">SOC работает 24/7/365</span></li>
+                            <li><span class="lang-en">Incident response runbooks</span><span class="lang-ru">Runbook'и реакции на инциденты</span></li>
+                            <li><span class="lang-en">Threat intelligence feeds</span><span class="lang-ru">Фиды угроз</span></li>
+                            <li><span class="lang-en">Quarterly red-team exercises</span><span class="lang-ru">Ежеквартальные red-team учения</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYERED DEFENSE -->
+        <section class="section">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label"><span class="lang-en">Layered Defense</span><span class="lang-ru">Эшелонированная защита</span></div>
+                    <h2 class="section__title"><span class="lang-en">Seven layers, <span class="accent">zero compromises</span></span><span class="lang-ru">Семь слоёв, <span class="accent">нет компромиссов</span></span></h2>
+                </div>
+                <div class="layered-defense fade-up">
+                    <div class="defense-list">
+                        <div class="defense-item">
+                            <div class="defense-num">1</div>
+                            <div class="defense-content">
+                                <h4><span class="lang-en">Network perimeter</span><span class="lang-ru">Сетевой периметр</span></h4>
+                                <p><span class="lang-en">DDoS mitigation, WAF, and geo-aware routing in front of every customer-facing service.</span><span class="lang-ru">Защита от DDoS, WAF и гео-маршрутизация перед каждым клиентским сервисом.</span></p>
+                            </div>
+                        </div>
+                        <div class="defense-item">
+                            <div class="defense-num">2</div>
+                            <div class="defense-content">
+                                <h4><span class="lang-en">Identity &amp; access</span><span class="lang-ru">Идентификация и доступ</span></h4>
+                                <p><span class="lang-en">MFA enforced everywhere, hardware security keys for staff, just-in-time privileged access.</span><span class="lang-ru">MFA обязателен везде, аппаратные ключи для сотрудников, JIT-доступ к привилегиям.</span></p>
+                            </div>
+                        </div>
+                        <div class="defense-item">
+                            <div class="defense-num">3</div>
+                            <div class="defense-content">
+                                <h4><span class="lang-en">Application security</span><span class="lang-ru">Безопасность приложений</span></h4>
+                                <p><span class="lang-en">Static and dynamic code analysis, dependency scanning, and signed deploy artifacts on every commit.</span><span class="lang-ru">SAST и DAST, сканирование зависимостей и подписанные артефакты на каждом коммите.</span></p>
+                            </div>
+                        </div>
+                        <div class="defense-item">
+                            <div class="defense-num">4</div>
+                            <div class="defense-content">
+                                <h4><span class="lang-en">Data protection</span><span class="lang-ru">Защита данных</span></h4>
+                                <p><span class="lang-en">AES-256 at rest, TLS 1.3 in transit, tokenization of PAN data, and per-customer key isolation.</span><span class="lang-ru">AES-256 в покое, TLS 1.3 в транзите, токенизация PAN и изоляция ключей по клиентам.</span></p>
+                            </div>
+                        </div>
+                        <div class="defense-item">
+                            <div class="defense-num">5</div>
+                            <div class="defense-content">
+                                <h4><span class="lang-en">Fraud &amp; abuse</span><span class="lang-ru">Защита от фрода</span></h4>
+                                <p><span class="lang-en">Real-time ML scoring, behavioral biometrics, and rule engines that adapt to emerging attack patterns.</span><span class="lang-ru">ML-скоринг в реальном времени, поведенческая биометрия и движок правил, адаптирующийся к новым атакам.</span></p>
+                            </div>
+                        </div>
+                        <div class="defense-item">
+                            <div class="defense-num">6</div>
+                            <div class="defense-content">
+                                <h4><span class="lang-en">Compliance &amp; audit</span><span class="lang-ru">Комплаенс и аудит</span></h4>
+                                <p><span class="lang-en">Continuous control monitoring, immutable audit logs, and quarterly third-party penetration testing.</span><span class="lang-ru">Непрерывный мониторинг контролей, неизменяемые аудит-логи и ежеквартальный пентест.</span></p>
+                            </div>
+                        </div>
+                        <div class="defense-item">
+                            <div class="defense-num">7</div>
+                            <div class="defense-content">
+                                <h4><span class="lang-en">Resilience</span><span class="lang-ru">Отказоустойчивость</span></h4>
+                                <p><span class="lang-en">Multi-region active-active architecture, automated failover, and 99.99% uptime SLA.</span><span class="lang-ru">Мульти-региональная active-active архитектура, авто-переключение, SLA 99.99%.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUG BOUNTY CTA -->
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(34, 211, 238, 0.1)); border: 1px solid var(--glass-border-strong); border-radius: var(--radius-xl); padding: 60px 40px; text-align: center;" class="fade-up">
+                    <h2 style="font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 14px; letter-spacing: -0.02em;"><span class="lang-en">Found a vulnerability?</span><span class="lang-ru">Нашли уязвимость?</span></h2>
+                    <p style="color: var(--text-soft); max-width: 580px; margin: 0 auto 28px;"><span class="lang-en">We run a public bug bounty program with rewards up to $50,000 for critical findings. Responsible disclosure is welcomed.</span><span class="lang-ru">У нас публичная программа Bug Bounty с вознаграждением до $50 000 за критические находки. Ответственное раскрытие приветствуется.</span></p>
+                    <a href="contact.html" class="btn btn--primary"><span class="lang-en">Contact security team</span><span class="lang-ru">Связаться с командой ИБ</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__col footer__brand">
+                    <a href="index.html" class="logo">
+                        <img src="logo.png" alt="Moonwalker" class="logo__icon">
+                        <span>Moonwalker</span>
+                    </a>
+                    <p><span class="lang-en">Next-generation payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span><span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span></p>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Product</span><span class="lang-ru">Продукт</span></h4>
+                    <a href="solutions.html"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                    <a href="security.html"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                    <a href="pricing.html"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                    <a href="integrations.html"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Company</span><span class="lang-ru">Компания</span></h4>
+                    <a href="about.html"><span class="lang-en">About</span><span class="lang-ru">О нас</span></a>
+                    <a href="blog.html"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Support</span><span class="lang-ru">Поддержка</span></h4>
+                    <a href="help.html"><span class="lang-en">Help Center</span><span class="lang-ru">Центр помощи</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact us</span><span class="lang-ru">Связаться</span></a>
+                    <a href="auth.html"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© 2026 Moonwalker Financial Technologies.</p>
+                <div class="footer__bottom-links">
+                    <a href="privacy.html"><span class="lang-en">Privacy</span><span class="lang-ru">Конфиденциальность</span></a>
+                    <a href="terms.html"><span class="lang-en">Terms</span><span class="lang-ru">Условия</span></a>
+                    <a href="cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>

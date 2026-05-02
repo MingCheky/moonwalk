@@ -3,236 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Moonwalker Integrations | Connect Your Favorite Tools">
-    <title>Moonwalker | Integrations</title>
+    <meta name="description" content="Connect Moonwalker to your existing tools — Shopify, Xero, QuickBooks, Slack, Zapier, and more.">
+    <title>Integrations · Moonwalker</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+
     <style>
-        :root {
-            --bg-deep: #050510;
-            --bg-panel: #0c0c1d;
-            --bg-card: #111128;
-            --text-main: #e6e6f0;
-            --text-muted: #9ca3af;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --accent-dark: #4f46e5;
-            --accent-glow: rgba(99,102,241,0.3);
-            --cyan: #06b6d4;
-            --green: #10b981;
-            --glass: rgba(15, 15, 35, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-border-hover: rgba(255, 255, 255, 0.15);
-            --font: 'Inter', system-ui, -apple-system, sans-serif;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .page-hero { padding: 160px 0 60px; text-align: center; }
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 700; line-height: 1.1; letter-spacing: -0.025em;
+            max-width: 880px; margin: 18px auto 22px;
+        }
+        .page-hero p {
+            color: var(--text-soft); font-size: 1.1rem;
+            max-width: 640px; margin: 0 auto;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font);
-            background: var(--bg-deep);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+        .integr-cat { margin-bottom: 56px; }
+        .integr-cat__title {
+            display: flex; align-items: center; gap: 14px;
+            font-size: 1.4rem; font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
         }
-        a { color: inherit; text-decoration: none; transition: var(--transition); }
-        .container { width: 90%; max-width: 1240px; margin: 0 auto; padding: 0 16px; }
-
-        body.lang-en .lang-ru { display: none !important; }
-        body.lang-ru .lang-en { display: none !important; }
-
-        /* ===== SPACE BACKGROUND ===== */
-        .space-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; overflow: hidden;
-            background: radial-gradient(ellipse at 50% 100%, #12123a 0%, var(--bg-deep) 60%);
+        .integr-cat__icon {
+            width: 44px; height: 44px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(34, 211, 238, 0.12));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--accent-light);
+            flex-shrink: 0;
         }
-        .stars { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .star { position: absolute; border-radius: 50%; background: #fff; }
-        .star-tiny { width: 1px; height: 1px; opacity: 0.4; }
-        .star-small { width: 2px; height: 2px; opacity: 0.6; }
-        .star-medium { width: 3px; height: 3px; opacity: 0.8; }
-        .star-bright { width: 4px; height: 4px; opacity: 1; box-shadow: 0 0 6px #fff; }
-        .planet { position: absolute; border-radius: 50%; }
-        .planet-1 {
-            width: 200px; height: 200px; top: 8%; right: 5%;
-            background: radial-gradient(circle at 35% 35%, #c084fc, #7c3aed, #3b0764);
-            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6), 0 0 60px rgba(168,85,247,0.25);
-            animation: float1 18s ease-in-out infinite alternate;
+        .integr-cat__icon svg { width: 22px; height: 22px; }
+        .integr-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
         }
-        .planet-2 {
-            width: 100px; height: 100px; bottom: 15%; left: 5%;
-            background: radial-gradient(circle at 35% 35%, #67e8f9, #0891b2, #164e63);
-            box-shadow: inset -8px -8px 20px rgba(0,0,0,0.6), 0 0 40px rgba(6,182,212,0.25);
-            animation: float2 14s ease-in-out infinite alternate-reverse;
+        .integr-card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius); padding: 28px 26px;
+            transition: var(--transition); backdrop-filter: blur(14px);
+            position: relative;
         }
-        .nebula { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.12; }
-        .nebula-1 { width: 500px; height: 500px; top: -10%; left: -10%; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); animation: pulse 12s ease-in-out infinite; }
-        .nebula-2 { width: 400px; height: 400px; bottom: 10%; right: -5%; background: radial-gradient(circle, var(--cyan) 0%, transparent 70%); animation: pulse 15s ease-in-out infinite 4s; }
-        @keyframes float1 { to { transform: translateY(-40px) translateX(10px) rotate(5deg); } }
-        @keyframes float2 { to { transform: translateY(-25px) translateX(-15px) rotate(-3deg); } }
-        @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.18; transform: scale(1.08); } }
-
-        /* ===== HEADER ===== */
-        .header {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(5, 5, 16, 0.8); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border); transition: var(--transition);
+        .integr-card:hover {
+            transform: translateY(-4px); border-color: var(--accent);
+            box-shadow: var(--shadow);
         }
-        .header.scrolled { background: rgba(5, 5, 16, 0.95); }
-        .header__inner {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 18px 0; gap: 20px;
+        .integr-card__head {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 14px;
         }
-        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo__img { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-        .logo__text { font-weight: 800; font-size: 1.5rem; color: #fff; }
-        
-        .nav { display: flex; gap: 32px; align-items: center; }
-        .nav__link { font-weight: 600; font-size: 1.05rem; color: var(--text-muted); transition: color 0.3s; }
-        .nav__link:hover, .nav__link.active { color: #fff; }
-        
-        .lang-switcher { position: relative; }
-        .lang-btn { background: var(--glass); border: 1px solid var(--glass-border); color: #fff; padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; }
-        .lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--bg-panel); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 6px; min-width: 100px; display: none; flex-direction: column; z-index: 10; }
-        .lang-dropdown.open { display: flex; }
-        .lang-option { background: none; border: none; color: var(--text-muted); padding: 10px; text-align: left; cursor: pointer; border-radius: 6px; }
-        .lang-option:hover, .lang-option.active { background: rgba(99,102,241,0.15); color: #fff; }
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
-        .mobile-menu-btn span { display: block; width: 24px; height: 2.5px; background: #fff; border-radius: 3px; }
-
-        @media (max-width: 768px) {
-            .nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(5,5,16,0.98); flex-direction: column; justify-content: center; gap: 32px; z-index: 999; }
-            .nav.nav--open { display: flex; }
-            .mobile-menu-btn { display: flex; }
-        }
-
-        /* ===== HERO ===== */
-        .page-hero { padding: 180px 0 60px; text-align: center; }
-        .page-hero__title { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px; }
-        .page-hero__title .highlight { background: linear-gradient(135deg, #fff, var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .page-hero__subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 40px; }
-
-        /* ===== SEARCH ===== */
-        .search-container { max-width: 600px; margin: 0 auto 80px; position: relative; }
-        .search-input { width: 100%; padding: 16px 24px; border-radius: 999px; border: 1px solid var(--glass-border); background: var(--glass); color: #fff; font-size: 1rem; outline: none; }
-        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-        .search-input::placeholder { color: var(--text-muted); }
-
-        /* ===== GRID ===== */
-        .integrations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            margin-bottom: 120px;
-        }
-        .integration-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 24px;
-            transition: var(--transition);
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-        }
-        .integration-card:hover { transform: translateY(-6px); border-color: var(--glass-border-hover); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
-        .integration-card__logo {
-            width: 64px; height: 64px; border-radius: 16px;
-            margin-bottom: 16px;
+        .integr-card__logo {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
             display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; font-weight: 800; color: #fff;
+            font-size: 1.35rem; font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px var(--accent-glow);
         }
-        .integration-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-        .integration-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; flex: 1; line-height: 1.5; }
-        .btn-connect {
-            padding: 10px 20px; border-radius: 999px; border: 1px solid var(--glass-border);
-            background: transparent; color: var(--text-main); font-weight: 600; cursor: pointer;
-            transition: var(--transition); font-family: var(--font); width: 100%;
+        .integr-card.shopify .integr-card__logo { background: linear-gradient(135deg, #95BF47, #5E8E3E); }
+        .integr-card.woo .integr-card__logo { background: linear-gradient(135deg, #7F54B3, #5E3D8C); }
+        .integr-card.magento .integr-card__logo { background: linear-gradient(135deg, #EE672F, #B0421E); }
+        .integr-card.xero .integr-card__logo { background: linear-gradient(135deg, #13B5EA, #0D7BA1); }
+        .integr-card.qb .integr-card__logo { background: linear-gradient(135deg, #2CA01C, #1F7E14); }
+        .integr-card.fb .integr-card__logo { background: linear-gradient(135deg, #21A8DA, #1882AB); }
+        .integr-card.stripe .integr-card__logo { background: linear-gradient(135deg, #635BFF, #4540D6); }
+        .integr-card.zapier .integr-card__logo { background: linear-gradient(135deg, #FF4A00, #C73800); }
+        .integr-card.slack .integr-card__logo { background: linear-gradient(135deg, #4A154B, #2C0D2D); }
+        .integr-card h3 { font-size: 1.08rem; font-weight: 700; }
+        .integr-card__desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+        .integr-card__cta {
+            font-size: 0.86rem; color: var(--accent-light);
+            font-weight: 500;
+            display: inline-flex; align-items: center; gap: 6px;
+            transition: var(--transition);
         }
-        .btn-connect:hover { background: var(--accent); border-color: var(--accent); }
+        .integr-card:hover .integr-card__cta { gap: 10px; }
+        .integr-tag {
+            position: absolute; top: 14px; right: 14px;
+            font-size: 0.66rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            padding: 3px 8px; border-radius: 999px;
+            background: rgba(16, 185, 129, 0.18); color: var(--green);
+        }
+        .integr-tag.new { background: rgba(245, 158, 11, 0.18); color: var(--amber); }
 
-        /* ===== API SECTION ===== */
-        .api-section {
-            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(6,182,212,0.05));
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 60px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-            margin-bottom: 120px;
-        }
-        .api-content h2 { font-size: 2rem; font-weight: 800; margin-bottom: 16px; }
-        .api-content p { color: var(--text-muted); margin-bottom: 24px; }
-        .code-block {
-            background: #0d0d16; border: 1px solid var(--glass-border);
-            border-radius: 12px; padding: 24px; font-family: monospace;
-            font-size: 0.9rem; color: #a5b4fc; overflow-x: auto;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer { padding: 80px 0 0; border-top: 1px solid var(--glass-border); background: var(--bg-panel); }
-        .footer__inner { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
-        .footer__brand p { color: var(--text-muted); margin-top: 16px; max-width: 300px; font-size: 0.9rem; }
-        .footer__col h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: #fff; }
-        .footer__col a { display: block; color: var(--text-muted); margin-bottom: 12px; font-size: 0.9rem; }
-        .footer__col a:hover { color: var(--accent-light); }
-        .footer__bottom { border-top: 1px solid var(--glass-border); padding: 24px 0; display: flex; justify-content: space-between; flex-wrap: wrap; }
-        .footer__bottom p { color: #6b7280; font-size: 0.85rem; }
-        .footer__bottom-links { display: flex; gap: 24px; }
-        .footer__bottom-links a { color: #6b7280; font-size: 0.85rem; }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-        .fade-up.delay-1 { transition-delay: 0.1s; }
-        .fade-up.delay-2 { transition-delay: 0.2s; }
-
-        @media (max-width: 1024px) {
-            .api-section { grid-template-columns: 1fr; padding: 40px; }
-            .footer__inner { grid-template-columns: 1fr 1fr; }
-        }
         @media (max-width: 768px) {
-            .footer__inner { grid-template-columns: 1fr; }
-            .footer__bottom { flex-direction: column; text-align: center; }
+            .integr-grid { grid-template-columns: 1fr; }
         }
     </style>
+
 </head>
 <body class="lang-en">
     <div class="space-bg" aria-hidden="true">
-        <div class="stars" id="starsContainer"></div>
-        <div class="planet planet-1"></div>
-        <div class="planet planet-2"></div>
+        <div class="stars-layer" data-count="50" data-depth="0.4"></div>
+        <div class="stars-layer" data-count="40" data-depth="0.8"></div>
+        <div class="stars-layer" data-count="25" data-depth="1.4"></div>
+        <div class="moon"><span class="moon-crater-3"></span></div>
+        <div class="planet planet-blue"></div>
         <div class="nebula nebula-1"></div>
         <div class="nebula nebula-2"></div>
+        <div class="shooting-star ss-1"></div>
+        <div class="shooting-star ss-2"></div>
+        <div class="shooting-star ss-3"></div>
+        <div class="shooting-star ss-4"></div>
+        <div class="shooting-star ss-5"></div>
+        <div class="dust-layer"></div>
+        <div class="comet">
+            <div class="comet__trail"></div>
+            <div class="comet__head"></div>
+        </div>
+        <div class="satellite"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <!-- left solar panel -->
+            <rect x="0" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="3" y1="11" x2="3" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="6" y1="11" x2="6" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <!-- right solar panel -->
+            <rect x="19" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="22" y1="11" x2="22" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="25" y1="11" x2="25" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <!-- body -->
+            <rect x="10" y="9" width="8" height="10" fill="#818cf8" stroke="#e8eaf6" stroke-width="1" rx="1.5"/>
+            <!-- antenna -->
+            <line x1="14" y1="9" x2="14" y2="4" stroke="#e8eaf6" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="14" cy="3" r="1.2" fill="#fef3c7"/>
+        </svg></div>
     </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
 
     <header class="header" id="header">
         <div class="container header__inner">
             <a href="index.html" class="logo">
-                <div class="logo__img">🌙</div>
-                <span class="logo__text">Moonwalker</span>
+                <img src="logo.png" alt="Moonwalker" class="logo__icon">
+                <span>Moonwalker</span>
             </a>
-            
             <nav class="nav" id="mainNav">
                 <a href="index.html" class="nav__link"><span class="lang-en">Home</span><span class="lang-ru">Главная</span></a>
-                <a href="solutions.html" class="nav__link"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
-                <a href="security.html" class="nav__link"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
-                <a href="blog.html" class="nav__link"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
-                <a href="integrations.html" class="nav__link active"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
-                <a href="contact.html" class="nav__link"><span class="lang-en">Contact Us</span><span class="lang-ru">Контакты</span></a>
+                <a href="solutions.html" class="nav__link "><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                <a href="security.html" class="nav__link "><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                <a href="pricing.html" class="nav__link "><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                <a href="blog.html" class="nav__link "><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                <a href="contact.html" class="nav__link "><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                <a href="auth.html" class="nav__link nav__cta"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
             </nav>
-
             <div class="lang-switcher">
-                <button id="langToggle" class="lang-btn"><span id="currentLang">EN</span></button>
+                <button id="langToggle" class="lang-btn"><span class="current-lang">EN</span></button>
                 <div class="lang-dropdown" id="langDropdown">
-                    <button class="lang-option active" data-lang="en">🇬 English</button>
-                    <button class="lang-option" data-lang="ru">🇷 Русский</button>
+                    <button class="lang-option active" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="ru">Русский</button>
                 </div>
             </div>
-
             <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
         </div>
     </header>
@@ -240,100 +166,139 @@
     <main>
         <section class="page-hero">
             <div class="container">
-                <h1 class="page-hero__title fade-up">
-                    <span class="lang-en">Seamless <span class="highlight">Integrations</span></span>
-                    <span class="lang-ru">Бесшовные <span class="highlight">Интеграции</span></span>
-                </h1>
-                <p class="page-hero__subtitle fade-up delay-1">
-                    <span class="lang-en">Connect Moonwalker with the tools you use every day to streamline your business.</span>
-                    <span class="lang-ru">Подключите Moonwalker к инструментам, которые вы используете каждый день.</span>
-                </p>
-                
-                <div class="search-container fade-up delay-2">
-                    <input type="text" class="search-input" placeholder="Search integrations...">
+                <div class="section__label fade-up"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></div>
+                <h1 class="fade-up delay-1"><span class="lang-en">Seamless <span class="accent">integrations</span></span><span class="lang-ru">Бесшовные <span class="accent">интеграции</span></span></h1>
+                <p class="fade-up delay-2"><span class="lang-en">Connect Moonwalker to the tools you already use. Plug-and-play in minutes, no engineering heroics required.</span><span class="lang-ru">Подключайте Moonwalker к инструментам, которыми уже пользуетесь. Plug-and-play за минуты, без инженерных подвигов.</span></p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 30px;">
+            <div class="container">
+                <!-- E-COMMERCE -->
+                <div class="integr-cat fade-up">
+                    <div class="integr-cat__title">
+                        <span class="integr-cat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
+                        <span><span class="lang-en">E-Commerce</span><span class="lang-ru">Электронная коммерция</span></span>
+                    </div>
+                    <div class="integr-grid">
+                        <div class="integr-card shopify">
+                            <span class="integr-tag"><span class="lang-en">Active</span><span class="lang-ru">Активно</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">S</div>
+                                <h3>Shopify</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Accept payments globally with one-click install. Multi-currency checkout out of the box.</span><span class="lang-ru">Принимайте платежи глобально с установкой в один клик. Мультивалютный чекаут из коробки.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Install plugin</span><span class="lang-ru">Установить плагин</span> →</a>
+                        </div>
+                        <div class="integr-card woo">
+                            <span class="integr-tag"><span class="lang-en">Active</span><span class="lang-ru">Активно</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">W</div>
+                                <h3>WooCommerce</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Native WordPress plugin. PCI-compliant hosted fields, no card data on your server.</span><span class="lang-ru">Нативный плагин WordPress. PCI-совместимые поля, без данных карт на вашем сервере.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Install plugin</span><span class="lang-ru">Установить плагин</span> →</a>
+                        </div>
+                        <div class="integr-card magento">
+                            <span class="integr-tag"><span class="lang-en">Active</span><span class="lang-ru">Активно</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">M</div>
+                                <h3>Magento</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Adobe Commerce extension supporting tokenized payments and recurring billing.</span><span class="lang-ru">Расширение Adobe Commerce с токенизированными платежами и рекуррентными списаниями.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Install plugin</span><span class="lang-ru">Установить плагин</span> →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACCOUNTING -->
+                <div class="integr-cat fade-up">
+                    <div class="integr-cat__title">
+                        <span class="integr-cat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span>
+                        <span><span class="lang-en">Accounting &amp; Finance</span><span class="lang-ru">Бухгалтерия и финансы</span></span>
+                    </div>
+                    <div class="integr-grid">
+                        <div class="integr-card xero">
+                            <span class="integr-tag"><span class="lang-en">Active</span><span class="lang-ru">Активно</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">X</div>
+                                <h3>Xero</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Auto-sync transactions, invoices, and reconciliations. Multi-currency aware.</span><span class="lang-ru">Авто-синхронизация транзакций, счетов и сверок. Поддержка мультивалюты.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span> →</a>
+                        </div>
+                        <div class="integr-card qb">
+                            <span class="integr-tag"><span class="lang-en">Active</span><span class="lang-ru">Активно</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">Q</div>
+                                <h3>QuickBooks</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Two-way sync with QBO. Automatic categorization, tax mapping, and audit trails.</span><span class="lang-ru">Двусторонняя синхронизация с QBO. Авто-категоризация, налоговый маппинг и аудит.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span> →</a>
+                        </div>
+                        <div class="integr-card fb">
+                            <span class="integr-tag new"><span class="lang-en">New</span><span class="lang-ru">Новое</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">F</div>
+                                <h3>FreshBooks</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Auto-import transactions and match to invoices. Built for freelancers and SMBs.</span><span class="lang-ru">Авто-импорт транзакций и сопоставление со счетами. Для фрилансеров и МСБ.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span> →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WORKFLOW -->
+                <div class="integr-cat fade-up">
+                    <div class="integr-cat__title">
+                        <span class="integr-cat__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+                        <span><span class="lang-en">Workflow &amp; Automation</span><span class="lang-ru">Воркфлоу и автоматизация</span></span>
+                    </div>
+                    <div class="integr-grid">
+                        <div class="integr-card zapier">
+                            <span class="integr-tag"><span class="lang-en">Active</span><span class="lang-ru">Активно</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">Z</div>
+                                <h3>Zapier</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Connect Moonwalker to 6000+ apps. Trigger on payments, payouts, and account events.</span><span class="lang-ru">Соедините Moonwalker с 6000+ приложений. Триггеры на платежи и события аккаунта.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">View on Zapier</span><span class="lang-ru">Открыть в Zapier</span> →</a>
+                        </div>
+                        <div class="integr-card slack">
+                            <span class="integr-tag"><span class="lang-en">Active</span><span class="lang-ru">Активно</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">#</div>
+                                <h3>Slack</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Real-time payment alerts in your team channels. Approve high-value transfers via Slack.</span><span class="lang-ru">Уведомления о платежах в каналы команды. Подтверждайте крупные переводы прямо в Slack.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Add to Slack</span><span class="lang-ru">Добавить в Slack</span> →</a>
+                        </div>
+                        <div class="integr-card stripe">
+                            <span class="integr-tag new"><span class="lang-en">New</span><span class="lang-ru">Новое</span></span>
+                            <div class="integr-card__head">
+                                <div class="integr-card__logo">$</div>
+                                <h3>Stripe</h3>
+                            </div>
+                            <p class="integr-card__desc"><span class="lang-en">Bridge Moonwalker payouts with your Stripe-powered checkout. Best of both worlds.</span><span class="lang-ru">Объедините выплаты Moonwalker с чекаутом на Stripe. Лучшее из двух миров.</span></p>
+                            <a href="contact.html" class="integr-card__cta"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span> →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="container">
-            <!-- E-Commerce Integrations -->
-            <div class="section__header fade-up" style="text-align: left; margin-bottom: 40px;">
-                <h2 style="font-size: 1.5rem;"><span class="lang-en">🛒 E-Commerce</span><span class="lang-ru">🛒 Электронная коммерция</span></h2>
-            </div>
-            <div class="integrations-grid">
-                <div class="integration-card fade-up">
-                    <div class="integration-card__logo" style="background: linear-gradient(135deg, #96bf48, #78a22f);">S</div>
-                    <h3>Shopify</h3>
-                    <p><span class="lang-en">Accept payments instantly and sync orders automatically.</span><span class="lang-ru">Принимайте платежи мгновенно и синхронизируйте заказы.</span></p>
-                    <button class="btn-connect"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span></button>
-                </div>
-                <div class="integration-card fade-up delay-1">
-                    <div class="integration-card__logo" style="background: linear-gradient(135deg, #96588a, #78486e);">W</div>
-                    <h3>WooCommerce</h3>
-                    <p><span class="lang-en">Plug-and-play plugin for WordPress stores worldwide.</span><span class="lang-ru">Плагин для интернет-магазинов на WordPress.</span></p>
-                    <button class="btn-connect"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span></button>
-                </div>
-                <div class="integration-card fade-up delay-2">
-                    <div class="integration-card__logo" style="background: linear-gradient(135deg, #f26522, #d95319);">M</div>
-                    <h3>Magento</h3>
-                    <p><span class="lang-en">Robust integration for high-volume e-commerce platforms.</span><span class="lang-ru">Мощная интеграция для крупных платформ.</span></p>
-                    <button class="btn-connect"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span></button>
+        <section class="section section--alt">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(34, 211, 238, 0.1)); border: 1px solid var(--glass-border-strong); border-radius: var(--radius-xl); padding: 60px 40px; text-align: center;" class="fade-up">
+                    <h2 style="font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 14px; letter-spacing: -0.02em;"><span class="lang-en">Build <span class="accent">custom integrations</span></span><span class="lang-ru">Создавайте <span class="accent">кастомные интеграции</span></span></h2>
+                    <p style="color: var(--text-soft); max-width: 580px; margin: 0 auto 28px;"><span class="lang-en">Don't see your tool? Use our REST API and SDKs to build any integration you need.</span><span class="lang-ru">Не нашли свой инструмент? Используйте REST API и SDK для любой интеграции.</span></p>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <a href="contact.html" class="btn btn--primary"><span class="lang-en">Get API access</span><span class="lang-ru">Получить API-доступ</span></a>
+                        <a href="contact.html" class="btn btn--outline"><span class="lang-en">View docs</span><span class="lang-ru">Документация</span></a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Accounting Integrations -->
-            <div class="section__header fade-up" style="text-align: left; margin-bottom: 40px; margin-top: 60px;">
-                <h2 style="font-size: 1.5rem;"><span class="lang-en">📊 Accounting & Finance</span><span class="lang-ru">📊 Бухгалтерия и Финансы</span></h2>
-            </div>
-            <div class="integrations-grid">
-                <div class="integration-card fade-up">
-                    <div class="integration-card__logo" style="background: linear-gradient(135deg, #13b5ea, #0e95c0);">X</div>
-                    <h3>Xero</h3>
-                    <p><span class="lang-en">Automate reconciliation and sync invoices in real-time.</span><span class="lang-ru">Автоматизируйте сверку и синхронизируйте счета.</span></p>
-                    <button class="btn-connect"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span></button>
-                </div>
-                <div class="integration-card fade-up delay-1">
-                    <div class="integration-card__logo" style="background: linear-gradient(135deg, #2ca01c, #218014);">Q</div>
-                    <h3>QuickBooks</h3>
-                    <p><span class="lang-en">Keep your books balanced with automatic data flow.</span><span class="lang-ru">Поддерживайте баланс с автоматической передачей данных.</span></p>
-                    <button class="btn-connect"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span></button>
-                </div>
-                <div class="integration-card fade-up delay-2">
-                    <div class="integration-card__logo" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">F</div>
-                    <h3>FreshBooks</h3>
-                    <p><span class="lang-en">Simplify invoicing and expense tracking for freelancers.</span><span class="lang-ru">Упрощение выставления счетов для фрилансеров.</span></p>
-                    <button class="btn-connect"><span class="lang-en">Connect</span><span class="lang-ru">Подключить</span></button>
-                </div>
-            </div>
-
-            <!-- API Section -->
-            <section class="api-section fade-up">
-                <div class="api-content">
-                    <h2><span class="lang-en">Build Custom Integrations</span><span class="lang-ru">Создавайте кастомные интеграции</span></h2>
-                    <p><span class="lang-en">Don't see your tool? Our powerful REST API allows you to build custom connections in minutes using our SDKs for Python, Node.js, and PHP.</span><span class="lang-ru">Нет вашего инструмента? Наш мощный REST API позволяет создавать кастомные подключения за минуты.</span></p>
-                    <a href="#" class="btn--primary" style="padding: 12px 24px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; display: inline-block;">
-                        <span class="lang-en">Read API Docs</span><span class="lang-ru">Документация API</span> →
-                    </a>
-                </div>
-                <div class="code-block">
-                    <pre>
-<span style="color: #ec4899;">const</span> moonwalker = <span style="color: #ec4899;">require</span>('moonwalker-sdk');
-
-<span style="color: #64748b;">// Initialize client</span>
-<span style="color: #ec4899;">const</span> client = <span style="color: #ec4899;">new</span> moonwalker.Client({
-  apiKey: 'mk_live_...'
-});
-
-<span style="color: #64748b;">// Create payment</span>
-<span style="color: #ec4899;">const</span> payment = <span style="color: #ec4899;">await</span> client.payments.create({
-  amount: <span style="color: #f59e0b;">2500</span>,
-  currency: <span style="color: #10b981;">'USD'</span>,
-  source: <span style="color: #10b981;">'visa_4242'</span>
-});
-                    </pre>
-                </div>
-            </section>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -341,95 +306,42 @@
             <div class="footer__inner">
                 <div class="footer__col footer__brand">
                     <a href="index.html" class="logo">
-                        <div class="logo__img">🌙</div>
+                        <img src="logo.png" alt="Moonwalker" class="logo__icon">
                         <span>Moonwalker</span>
                     </a>
-                    <p><span class="lang-en">Next-gen payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span><span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span></p>
+                    <p><span class="lang-en">Next-generation payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span><span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span></p>
                 </div>
                 <div class="footer__col">
                     <h4><span class="lang-en">Product</span><span class="lang-ru">Продукт</span></h4>
                     <a href="solutions.html"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                    <a href="security.html"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                    <a href="pricing.html"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
                     <a href="integrations.html"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
                 </div>
                 <div class="footer__col">
                     <h4><span class="lang-en">Company</span><span class="lang-ru">Компания</span></h4>
                     <a href="about.html"><span class="lang-en">About</span><span class="lang-ru">О нас</span></a>
                     <a href="blog.html"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
                 </div>
                 <div class="footer__col">
                     <h4><span class="lang-en">Support</span><span class="lang-ru">Поддержка</span></h4>
                     <a href="help.html"><span class="lang-en">Help Center</span><span class="lang-ru">Центр помощи</span></a>
-                    <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact us</span><span class="lang-ru">Связаться</span></a>
+                    <a href="auth.html"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2026 Moonwalker Financial Technologies. All rights reserved.</p>
+                <p>© 2026 Moonwalker Financial Technologies.</p>
                 <div class="footer__bottom-links">
                     <a href="privacy.html"><span class="lang-en">Privacy</span><span class="lang-ru">Конфиденциальность</span></a>
                     <a href="terms.html"><span class="lang-en">Terms</span><span class="lang-ru">Условия</span></a>
-                    <a href="cookies.html"><span class="lang-en">Cookies</span><span class="lang-ru">Куки</span></a>
+                    <a href="cookies.html">Cookies</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Generate stars
-        (function() {
-            const container = document.getElementById('starsContainer');
-            if (!container) return;
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                const classes = ['star-tiny', 'star-small', 'star-medium', 'star-bright'];
-                star.className = 'star ' + classes[Math.floor(Math.random() * classes.length)];
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                container.appendChild(star);
-            }
-        })();
-
-        // Language Switcher
-        const langToggle = document.getElementById('langToggle');
-        const langDropdown = document.getElementById('langDropdown');
-        const langOptions = document.querySelectorAll('.lang-option');
-        const currentLangSpan = document.getElementById('currentLang');
-        const body = document.body;
-
-        langToggle.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('open'); });
-        document.addEventListener('click', (e) => { if (!langToggle.contains(e.target) && !langDropdown.contains(e.target)) langDropdown.classList.remove('open'); });
-        langOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const lang = option.dataset.lang;
-                body.className = `lang-${lang}`;
-                currentLangSpan.textContent = lang.toUpperCase();
-                langOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                langDropdown.classList.remove('open');
-                localStorage.setItem('moonwalker-lang', lang);
-            });
-        });
-        const savedLang = localStorage.getItem('moonwalker-lang');
-        if (savedLang) {
-            body.className = `lang-${savedLang}`;
-            currentLangSpan.textContent = savedLang.toUpperCase();
-            langOptions.forEach(opt => opt.classList.toggle('active', opt.dataset.lang === savedLang));
-        }
-
-        // Mobile Menu
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const nav = document.getElementById('mainNav');
-        mobileBtn.addEventListener('click', () => { nav.classList.toggle('nav--open'); mobileBtn.classList.toggle('active'); });
-        nav.querySelectorAll('.nav__link').forEach(link => { link.addEventListener('click', () => { nav.classList.remove('nav--open'); mobileBtn.classList.remove('active'); }); });
-
-        // Header scroll
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
-
-        // Scroll Animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.fade-up').forEach(el => { observer.observe(el); });
-    </script>
+    <script src="assets/main.js"></script>
 </body>
 </html>

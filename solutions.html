@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moonwalker solutions for individuals and businesses — multi-currency wallets, global payouts, APIs, and more.">
+    <title>Solutions · Moonwalker</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .page-hero { padding: 160px 0 60px; text-align: center; }
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 700; line-height: 1.1; letter-spacing: -0.025em;
+            max-width: 880px; margin: 18px auto 22px;
+        }
+        .page-hero p {
+            color: var(--text-soft); font-size: 1.1rem;
+            max-width: 640px; margin: 0 auto;
+        }
+
+        .audience {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 26px;
+            max-width: 980px; margin: 0 auto;
+        }
+        .audience-card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(14px);
+        }
+        .audience-card:hover { transform: translateY(-4px); border-color: var(--glass-border-strong); box-shadow: var(--shadow); }
+        .audience-card__icon {
+            width: 64px; height: 64px;
+            border-radius: 16px;
+            margin: 0 auto 18px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(34, 211, 238, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .audience-card__icon svg { width: 32px; height: 32px; color: var(--accent-light); }
+        .audience-card.business .audience-card__icon {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.1));
+            border-color: rgba(34, 211, 238, 0.25);
+        }
+        .audience-card.business .audience-card__icon svg { color: var(--cyan-light); }
+        .audience-card h2 { font-size: 1.5rem; margin-bottom: 8px; letter-spacing: -0.01em; }
+        .audience-card__sub { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 22px; }
+
+        .feature-list {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+        }
+        .feature-mini {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius); padding: 26px 22px;
+            transition: var(--transition); backdrop-filter: blur(14px);
+        }
+        .feature-mini:hover { transform: translateY(-3px); border-color: var(--glass-border-strong); box-shadow: var(--shadow-sm); }
+        .feature-mini__icon {
+            width: 44px; height: 44px; border-radius: 11px; margin-bottom: 16px;
+            background: rgba(99, 102, 241, 0.15);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-light);
+        }
+        .feature-mini__icon svg { width: 22px; height: 22px; }
+        .feature-mini h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+        .feature-mini p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        .use-cases {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+        }
+        .use-case {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius); padding: 28px;
+            transition: var(--transition); backdrop-filter: blur(14px);
+        }
+        .use-case:hover { border-color: var(--glass-border-strong); transform: translateY(-3px); }
+        .use-case h3 {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; color: #fff;
+        }
+        .use-case__icon {
+            width: 36px; height: 36px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(34, 211, 238, 0.12));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--accent-light);
+            flex-shrink: 0;
+        }
+        .use-case__icon svg { width: 20px; height: 20px; }
+        .use-case p { color: var(--text-soft); line-height: 1.65; }
+
+        @media (max-width: 768px) {
+            .audience { grid-template-columns: 1fr; }
+            .feature-list { grid-template-columns: 1fr; }
+            .use-cases { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="lang-en">
+    <div class="space-bg" aria-hidden="true">
+        <div class="stars-layer" data-count="50" data-depth="0.4"></div>
+        <div class="stars-layer" data-count="40" data-depth="0.8"></div>
+        <div class="stars-layer" data-count="25" data-depth="1.4"></div>
+        <div class="moon"><span class="moon-crater-3"></span></div>
+        <div class="planet planet-blue"></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="shooting-star ss-1"></div>
+        <div class="shooting-star ss-2"></div>
+        <div class="shooting-star ss-3"></div>
+        <div class="shooting-star ss-4"></div>
+        <div class="shooting-star ss-5"></div>
+        <div class="dust-layer"></div>
+        <div class="comet">
+            <div class="comet__trail"></div>
+            <div class="comet__head"></div>
+        </div>
+        <div class="satellite"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <!-- left solar panel -->
+            <rect x="0" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="3" y1="11" x2="3" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="6" y1="11" x2="6" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <!-- right solar panel -->
+            <rect x="19" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="22" y1="11" x2="22" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="25" y1="11" x2="25" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <!-- body -->
+            <rect x="10" y="9" width="8" height="10" fill="#818cf8" stroke="#e8eaf6" stroke-width="1" rx="1.5"/>
+            <!-- antenna -->
+            <line x1="14" y1="9" x2="14" y2="4" stroke="#e8eaf6" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="14" cy="3" r="1.2" fill="#fef3c7"/>
+        </svg></div>
+    </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Moonwalker" class="logo__icon">
+                <span>Moonwalker</span>
+            </a>
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav__link"><span class="lang-en">Home</span><span class="lang-ru">Главная</span></a>
+                <a href="solutions.html" class="nav__link active"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                <a href="security.html" class="nav__link"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                <a href="pricing.html" class="nav__link"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                <a href="blog.html" class="nav__link"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                <a href="contact.html" class="nav__link"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                <a href="auth.html" class="nav__link nav__cta"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
+            </nav>
+            <div class="lang-switcher">
+                <button id="langToggle" class="lang-btn"><span class="current-lang">EN</span></button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button class="lang-option active" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="ru">Русский</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="section__label fade-up"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></div>
+                <h1 class="fade-up delay-1"><span class="lang-en">Built for everyone, from <span class="accent">everywhere</span></span><span class="lang-ru">Создано для всех — <span class="accent">отовсюду</span></span></h1>
+                <p class="fade-up delay-2"><span class="lang-en">From sending money home to scaling a global empire — Moonwalker has the right product for every stage.</span><span class="lang-ru">От отправки денег домой до масштабирования глобальной империи — Moonwalker подберёт правильный продукт.</span></p>
+            </div>
+        </section>
+
+        <!-- AUDIENCE -->
+        <section class="section" style="padding-top: 30px;">
+            <div class="container">
+                <div class="audience">
+                    <div class="audience-card fade-up">
+                        <div class="audience-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <h2><span class="lang-en">For Individuals</span><span class="lang-ru">Для частных лиц</span></h2>
+                        <div class="audience-card__sub"><span class="lang-en">Personal finance, simplified.</span><span class="lang-ru">Личные финансы — без усложнений.</span></div>
+                        <a href="auth.html" class="btn btn--primary"><span class="lang-en">Open Personal Account</span><span class="lang-ru">Открыть личный счёт</span></a>
+                    </div>
+                    <div class="audience-card business fade-up delay-1">
+                        <div class="audience-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                        </div>
+                        <h2><span class="lang-en">For Businesses</span><span class="lang-ru">Для бизнеса</span></h2>
+                        <div class="audience-card__sub"><span class="lang-en">Enterprise infrastructure, on-demand.</span><span class="lang-ru">Корпоративная инфраструктура по запросу.</span></div>
+                        <a href="auth.html?type=business" class="btn btn--secondary"><span class="lang-en">Open Business Account</span><span class="lang-ru">Открыть бизнес-счёт</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDIVIDUAL FEATURES -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label"><span class="lang-en">Personal</span><span class="lang-ru">Для людей</span></div>
+                    <h2 class="section__title"><span class="lang-en">Everything you need to <span class="accent">manage your money</span></span><span class="lang-ru">Всё для <span class="accent">управления деньгами</span></span></h2>
+                </div>
+                <div class="feature-list">
+                    <div class="feature-mini fade-up">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Multi-currency wallets</span><span class="lang-ru">Мультивалютные кошельки</span></h3>
+                        <p><span class="lang-en">Hold and exchange 150+ currencies in one account. Convert at mid-market rates with disclosed fees — no hidden markups.</span><span class="lang-ru">Держите и обменивайте 150+ валют в одном счёте. Конвертация по рыночным курсам с раскрытыми комиссиями.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-1">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Instant P2P transfers</span><span class="lang-ru">Мгновенные P2P переводы</span></h3>
+                        <p><span class="lang-en">Send money to anyone, anywhere — settled in seconds, with full delivery tracking and recipient confirmation.</span><span class="lang-ru">Отправляйте деньги куда угодно — расчёт за секунды, с отслеживанием доставки.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-2">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Virtual & physical cards</span><span class="lang-ru">Виртуальные и физические карты</span></h3>
+                        <p><span class="lang-en">Generate virtual cards instantly for online purchases, or order a metal physical card. Spend in any currency.</span><span class="lang-ru">Виртуальные карты мгновенно для онлайн-покупок, или закажите металлическую карту. Тратьте в любой валюте.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Smart budgeting</span><span class="lang-ru">Умное бюджетирование</span></h3>
+                        <p><span class="lang-en">Auto-categorized spending, customizable budgets, and AI-powered insights help you make smarter financial decisions.</span><span class="lang-ru">Автокатегории трат, кастомные бюджеты и ИИ-инсайты для умных финансовых решений.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-1">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Travel-friendly</span><span class="lang-ru">Удобно для путешествий</span></h3>
+                        <p><span class="lang-en">Use your card abroad with no foreign transaction fees. Get instant local SIM data and travel insurance benefits.</span><span class="lang-ru">Используйте карту за границей без валютных комиссий. Локальные SIM и страховка путешествий в подарок.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-2">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Bank-grade security</span><span class="lang-ru">Банковская безопасность</span></h3>
+                        <p><span class="lang-en">Biometric authentication, real-time fraud monitoring, and instant card freeze. Your money is protected, always.</span><span class="lang-ru">Биометрия, мониторинг фрода в реальном времени, мгновенная блокировка карт.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUSINESS FEATURES -->
+        <section class="section">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label"><span class="lang-en">Business</span><span class="lang-ru">Для бизнеса</span></div>
+                    <h2 class="section__title"><span class="lang-en">Infrastructure for <span class="accent">global growth</span></span><span class="lang-ru">Инфраструктура для <span class="accent">глобального роста</span></span></h2>
+                </div>
+                <div class="feature-list">
+                    <div class="feature-mini fade-up">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <h3><span class="lang-en">RESTful APIs & SDKs</span><span class="lang-ru">RESTful API и SDK</span></h3>
+                        <p><span class="lang-en">Native libraries for Python, Node.js, Go, PHP, Ruby, and Java. Webhooks, idempotency keys, and full OpenAPI spec.</span><span class="lang-ru">SDK для Python, Node.js, Go, PHP, Ruby, Java. Вебхуки, ключи идемпотентности, полная OpenAPI спецификация.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-1">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Auto reconciliation</span><span class="lang-ru">Авто-сверка</span></h3>
+                        <p><span class="lang-en">Smart matching engine pairs incoming payments to invoices automatically. Cuts manual work by 90%.</span><span class="lang-ru">Умный движок сопоставляет входящие платежи со счетами. Сокращает ручную работу на 90%.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-2">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6"/><path d="M23 11h-6"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Team management</span><span class="lang-ru">Управление командой</span></h3>
+                        <p><span class="lang-en">Granular roles, approval workflows, and audit logs. SSO via SAML/OIDC for enterprise plans.</span><span class="lang-ru">Тонкие роли, воркфлоу одобрений, аудит-логи. SSO через SAML/OIDC для enterprise.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Mass payouts</span><span class="lang-ru">Массовые выплаты</span></h3>
+                        <p><span class="lang-en">Pay thousands of contractors, vendors, or marketplace sellers in a single API call. 150+ currencies supported.</span><span class="lang-ru">Платите тысячам подрядчиков и продавцов одним API-вызовом. 150+ валют.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-1">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Real-time analytics</span><span class="lang-ru">Аналитика в реальном времени</span></h3>
+                        <p><span class="lang-en">Live dashboards, custom reports, exportable to BigQuery and Snowflake. Track every metric that matters.</span><span class="lang-ru">Живые дашборды, кастомные отчёты, экспорт в BigQuery и Snowflake.</span></p>
+                    </div>
+                    <div class="feature-mini fade-up delay-2">
+                        <div class="feature-mini__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                        </div>
+                        <h3><span class="lang-en">Dedicated support</span><span class="lang-ru">Персональная поддержка</span></h3>
+                        <p><span class="lang-en">Named account manager and Slack-channel support for Business and Enterprise plans. SLAs available.</span><span class="lang-ru">Персональный менеджер и Slack-поддержка на Business и Enterprise. Доступны SLA.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASES -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label"><span class="lang-en">Use Cases</span><span class="lang-ru">Применение</span></div>
+                    <h2 class="section__title"><span class="lang-en">Built for <span class="accent">every industry</span></span><span class="lang-ru">Создано для <span class="accent">каждой отрасли</span></span></h2>
+                </div>
+                <div class="use-cases">
+                    <div class="use-case fade-up">
+                        <h3><span class="use-case__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span><span class="lang-en">E-commerce</span><span class="lang-ru">E-commerce</span></h3>
+                        <p><span class="lang-en">Accept payments from 200+ countries with local payment methods. Display prices in customer's currency, settle in yours.</span><span class="lang-ru">Принимайте платежи из 200+ стран с локальными методами. Цены в валюте покупателя, расчёт в вашей.</span></p>
+                    </div>
+                    <div class="use-case fade-up delay-1">
+                        <h3><span class="use-case__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><span class="lang-en">SaaS & Subscriptions</span><span class="lang-ru">SaaS и подписки</span></h3>
+                        <p><span class="lang-en">Automated billing, smart retry logic, dunning management, and global tax calculation built-in.</span><span class="lang-ru">Автобиллинг, умные повторы, управление просрочкой и глобальный расчёт налогов.</span></p>
+                    </div>
+                    <div class="use-case fade-up delay-2">
+                        <h3><span class="use-case__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg></span><span class="lang-en">Marketplaces</span><span class="lang-ru">Маркетплейсы</span></h3>
+                        <p><span class="lang-en">Onboard sellers in 30+ countries, split payments automatically, and handle payouts in their preferred currency.</span><span class="lang-ru">Подключайте продавцов из 30+ стран, делите платежи автоматически и платите в их валюте.</span></p>
+                    </div>
+                    <div class="use-case fade-up delay-3">
+                        <h3><span class="use-case__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span class="lang-en">Fintech & Neobanks</span><span class="lang-ru">Финтех и необанки</span></h3>
+                        <p><span class="lang-en">Issue branded cards, open multi-currency accounts, and offer cross-border transfers — all white-labeled.</span><span class="lang-ru">Выпускайте брендированные карты, открывайте мультивалютные счета и переводы — всё под вашим брендом.</span></p>
+                    </div>
+                    <div class="use-case fade-up delay-4">
+                        <h3><span class="use-case__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span><span class="lang-en">Travel & Hospitality</span><span class="lang-ru">Путешествия и гостеприимство</span></h3>
+                        <p><span class="lang-en">Accept reservations in any currency, payout to hotels in theirs, and offer travel cards to guests.</span><span class="lang-ru">Принимайте брони в любой валюте, платите отелям в их валюте, предлагайте travel-карты гостям.</span></p>
+                    </div>
+                    <div class="use-case fade-up delay-5">
+                        <h3><span class="use-case__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span><span class="lang-en">Creator Platforms</span><span class="lang-ru">Креаторы и платформы</span></h3>
+                        <p><span class="lang-en">Pay creators globally with one API call. Tax forms, KYC, and currency conversion all handled.</span><span class="lang-ru">Платите авторам глобально одним API-вызовом. Налоговые формы, KYC и конвертация — всё включено.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div class="cta__inner fade-up" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(34, 211, 238, 0.1)); border: 1px solid var(--glass-border-strong); border-radius: var(--radius-xl); padding: 70px 40px; text-align: center; position: relative; overflow: hidden;">
+                    <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: 16px; letter-spacing: -0.02em;"><span class="lang-en">Find your <span class="accent">perfect plan</span></span><span class="lang-ru">Найдите <span class="accent">свой план</span></span></h2>
+                    <p style="color: var(--text-soft); max-width: 540px; margin: 0 auto 28px;"><span class="lang-en">Compare features, fees, and limits across our plans.</span><span class="lang-ru">Сравните возможности, комиссии и лимиты планов.</span></p>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <a href="pricing.html" class="btn btn--primary"><span class="lang-en">View pricing</span><span class="lang-ru">Тарифы</span></a>
+                        <a href="contact.html" class="btn btn--outline"><span class="lang-en">Talk to sales</span><span class="lang-ru">Связаться с продажами</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__col footer__brand">
+                    <a href="index.html" class="logo">
+                        <img src="logo.png" alt="Moonwalker" class="logo__icon">
+                        <span>Moonwalker</span>
+                    </a>
+                    <p><span class="lang-en">Next-generation payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span><span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span></p>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Product</span><span class="lang-ru">Продукт</span></h4>
+                    <a href="solutions.html"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                    <a href="security.html"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                    <a href="pricing.html"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                    <a href="integrations.html"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Company</span><span class="lang-ru">Компания</span></h4>
+                    <a href="about.html"><span class="lang-en">About</span><span class="lang-ru">О нас</span></a>
+                    <a href="blog.html"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Support</span><span class="lang-ru">Поддержка</span></h4>
+                    <a href="help.html"><span class="lang-en">Help Center</span><span class="lang-ru">Центр помощи</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact us</span><span class="lang-ru">Связаться</span></a>
+                    <a href="auth.html"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© 2026 Moonwalker Financial Technologies.</p>
+                <div class="footer__bottom-links">
+                    <a href="privacy.html"><span class="lang-en">Privacy</span><span class="lang-ru">Конфиденциальность</span></a>
+                    <a href="terms.html"><span class="lang-en">Terms</span><span class="lang-ru">Условия</span></a>
+                    <a href="cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>

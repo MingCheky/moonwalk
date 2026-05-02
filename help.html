@@ -3,215 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Moonwalker | Help Center - Get Support and Answers">
-    <title>Moonwalker | Help Center</title>
+    <meta name="description" content="Moonwalker Help Center — answers, guides, and support for every question.">
+    <title>Help Center · Moonwalker</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+
     <style>
-        :root {
-            --bg-deep: #050510;
-            --bg-panel: #0c0c1d;
-            --bg-card: #111128;
-            --text-main: #e6e6f0;
-            --text-muted: #9ca3af;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --accent-dark: #4f46e5;
-            --accent-glow: rgba(99,102,241,0.3);
-            --cyan: #06b6d4;
-            --purple: #a855f7;
-            --green: #10b981;
-            --glass: rgba(15, 15, 35, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-border-hover: rgba(255, 255, 255, 0.15);
-            --font: 'Inter', system-ui, -apple-system, sans-serif;
-            --radius: 16px;
-            --radius-sm: 10px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .page-hero { padding: 160px 0 60px; text-align: center; }
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 700; line-height: 1.1; letter-spacing: -0.025em;
+            max-width: 880px; margin: 18px auto 22px;
+        }
+        .page-hero p {
+            color: var(--text-soft); font-size: 1.1rem;
+            max-width: 640px; margin: 0 auto;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font);
-            background: var(--bg-deep);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+        .help-search {
+            max-width: 640px; margin: 0 auto;
+            position: relative;
         }
-        a { color: inherit; text-decoration: none; transition: var(--transition); }
-        .container { width: 90%; max-width: 1240px; margin: 0 auto; padding: 0 16px; }
-
-        body.lang-en .lang-ru { display: none !important; }
-        body.lang-ru .lang-en { display: none !important; }
-
-        /* ===== SPACE BACKGROUND ===== */
-        .space-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; overflow: hidden;
-            background: radial-gradient(ellipse at 50% 100%, #12123a 0%, var(--bg-deep) 60%);
-        }
-        .stars { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .star { position: absolute; border-radius: 50%; background: #fff; }
-        .star-tiny { width: 1px; height: 1px; opacity: 0.4; }
-        .star-small { width: 2px; height: 2px; opacity: 0.6; }
-        .star-medium { width: 3px; height: 3px; opacity: 0.8; }
-        .star-bright { width: 4px; height: 4px; opacity: 1; box-shadow: 0 0 6px #fff; }
-
-        .planet { position: absolute; border-radius: 50%; }
-        .planet-1 {
-            width: 200px; height: 200px; top: 8%; right: 5%;
-            background: radial-gradient(circle at 35% 35%, #c084fc, #7c3aed, #3b0764);
-            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.6), 0 0 60px rgba(168,85,247,0.25);
-            animation: float1 18s ease-in-out infinite alternate;
-        }
-        .planet-2 {
-            width: 100px; height: 100px; bottom: 15%; left: 5%;
-            background: radial-gradient(circle at 35% 35%, #67e8f9, #0891b2, #164e63);
-            box-shadow: inset -8px -8px 20px rgba(0,0,0,0.6), 0 0 40px rgba(6,182,212,0.25);
-            animation: float2 14s ease-in-out infinite alternate-reverse;
-        }
-        .nebula { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.12; }
-        .nebula-1 { width: 500px; height: 500px; top: -10%; left: -10%; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); animation: pulse 12s ease-in-out infinite; }
-        .nebula-2 { width: 400px; height: 400px; bottom: 10%; right: -5%; background: radial-gradient(circle, var(--cyan) 0%, transparent 70%); animation: pulse 15s ease-in-out infinite 4s; }
-        @keyframes float1 { to { transform: translateY(-40px) translateX(10px) rotate(5deg); } }
-        @keyframes float2 { to { transform: translateY(-25px) translateX(-15px) rotate(-3deg); } }
-        @keyframes pulse { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.18; transform: scale(1.06); } }
-
-        /* ===== HEADER ===== */
-        .header {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(5,5,16,0.6); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border); transition: var(--transition);
-        }
-        .header.scrolled { background: rgba(5,5,16,0.92); }
-        .header__inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 16px; }
-        .logo { font-weight: 800; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
-        .logo__icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent), var(--purple)); border-radius: 10px; font-size: 1.2rem; }
-        .nav { display: flex; gap: 28px; align-items: center; }
-        .nav__link { font-weight: 500; font-size: 0.9rem; color: var(--text-muted); position: relative; padding: 4px 0; }
-        .nav__link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--accent); transition: var(--transition); }
-        .nav__link:hover, .nav__link.active { color: #fff; }
-        .nav__link:hover::after, .nav__link.active::after { width: 100%; }
-        .nav__link--cta { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); padding: 10px 22px; border-radius: 999px; color: #fff; font-weight: 600; box-shadow: 0 4px 15px var(--accent-glow); }
-        .nav__link--cta::after { display: none; }
-        .nav__link--cta:hover { transform: translateY(-2px); box-shadow: 0 6px 25px var(--accent-glow); }
-        .lang-switcher { position: relative; }
-        .lang-btn { background: var(--glass); border: 1px solid var(--glass-border); color: #fff; padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
-        .lang-btn:hover { border-color: var(--accent); }
-        .lang-dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--bg-panel); border: 1px solid var(--glass-border); border-radius: var(--radius-sm); padding: 6px; min-width: 140px; display: none; flex-direction: column; gap: 2px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 10; }
-        .lang-dropdown.open { display: flex; }
-        .lang-option { background: none; border: none; color: var(--text-muted); padding: 10px 14px; text-align: left; cursor: pointer; border-radius: 6px; transition: var(--transition); font-size: 0.9rem; font-family: var(--font); }
-        .lang-option:hover, .lang-option.active { background: rgba(99,102,241,0.15); color: #fff; }
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
-        .mobile-menu-btn span { display: block; width: 24px; height: 2.5px; background: #fff; border-radius: 3px; transition: var(--transition); }
-        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
-        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        /* ===== PAGE HERO ===== */
-        .page-hero {
-            padding: 180px 0 60px; text-align: center;
-        }
-        .page-hero__title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px;
-        }
-        .page-hero__title .highlight {
-            background: linear-gradient(135deg, #fff, var(--accent-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .page-hero__subtitle {
-            color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7;
-        }
-
-        /* ===== ARTICLES GRID ===== */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            margin-bottom: 100px;
-        }
-        .article-card {
+        .help-search input {
+            width: 100%; padding: 16px 24px 16px 52px;
             background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 32px 28px;
-            transition: var(--transition);
+            border: 1px solid var(--glass-border-strong);
+            border-radius: 999px;
+            color: #fff; font-size: 1rem;
+            outline: none; transition: var(--transition);
+            backdrop-filter: blur(14px);
         }
-        .article-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--glass-border-hover);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        .help-search input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
         }
-        .article-card__icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(168,85,247,0.15));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-        }
-        .article-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-        .article-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.65;
-            margin-bottom: 16px;
-        }
-        .article-card__link {
-            color: var(--accent-light);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition);
-        }
-        .article-card__link:hover {
-            gap: 10px;
+        .help-search::before {
+            content: '';
+            position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+            width: 18px; height: 18px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23818cf8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+            background-size: contain; background-repeat: no-repeat;
+            pointer-events: none;
         }
 
-        /* ===== FAQ SECTION ===== */
-        .faq-section {
+        .help-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .help-card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: var(--radius); padding: 28px 24px;
+            transition: var(--transition); backdrop-filter: blur(14px);
+            cursor: pointer;
+        }
+        .help-card:hover {
+            transform: translateY(-3px); border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+        .help-card__icon {
+            width: 44px; height: 44px; border-radius: 11px; margin-bottom: 16px;
+            background: rgba(99, 102, 241, 0.15);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-light);
+        }
+        .help-card__icon svg { width: 22px; height: 22px; }
+        .help-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+        .help-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .help-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== FAQ ACCORDION STYLES ===== */
+        .faq__list {
             max-width: 800px;
-            margin: 0 auto 100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
+
         .faq-item {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            margin-bottom: 16px;
+            border-radius: 16px;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
+
+        .faq-item:hover {
+            border-color: var(--glass-border-hover);
+        }
+
+        .faq-item.active {
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
         .faq-question {
             width: 100%;
-            padding: 24px 28px;
             background: none;
             border: none;
-            color: var(--text-main);
+            color: #fff;
+            padding: 20px 24px;
             font-size: 1rem;
             font-weight: 600;
             text-align: left;
@@ -219,445 +114,205 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family: var(--font);
-            transition: var(--transition);
+            font-family: inherit;
+            transition: background 0.2s ease;
         }
+
         .faq-question:hover {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.03);
         }
+
         .faq-question::after {
             content: '+';
-            font-size: 1.5rem;
-            color: var(--accent);
-            transition: transform 0.3s;
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
         }
+
         .faq-item.active .faq-question::after {
             transform: rotate(45deg);
         }
+
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease;
+            transition: max-height 0.4s ease-out;
         }
-        .faq-answer-inner {
-            padding: 0 28px 24px;
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer__inner {
+            padding: 0 24px 24px 24px;
             color: var(--text-muted);
+            font-size: 0.94rem;
             line-height: 1.7;
         }
-
-        /* ===== CONTACT CTA ===== */
-        .contact-cta {
-            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.08));
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 60px 40px;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .contact-cta h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-        .contact-cta p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 32px;
-        }
-        .btn {
-            padding: 14px 32px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn--primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: #fff;
-            border: none;
-            box-shadow: 0 4px 20px var(--accent-glow);
-        }
-        .btn--primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            padding: 80px 0 40px;
-            border-top: 1px solid var(--glass-border);
-            background: var(--bg-panel);
-            margin-top: 100px;
-        }
-        .footer__inner {
-            display: grid;
-            grid-template-columns: 1.5fr repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        .footer__brand p {
-            color: var(--text-muted);
-            margin-top: 16px;
-            max-width: 300px;
-            font-size: 0.9rem;
-        }
-        .footer__col h4 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        .footer__col a {
-            display: block;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-        }
-        .footer__col a:hover {
-            color: var(--accent-light);
-        }
-        .footer__bottom {
-            border-top: 1px solid var(--glass-border);
-            padding-top: 24px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .footer__bottom p {
-            color: #6b7280;
-            font-size: 0.85rem;
-        }
-        .footer__bottom-links {
-            display: flex;
-            gap: 24px;
-        }
-        .footer__bottom-links a {
-            color: #6b7280;
-            font-size: 0.85rem;
-        }
-        .footer__bottom-links a:hover {
-            color: var(--accent-light);
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .fade-up.delay-1 { transition-delay: 0.1s; }
-        .fade-up.delay-2 { transition-delay: 0.2s; }
-        .fade-up.delay-3 { transition-delay: 0.3s; }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .articles-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer__inner { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 768px) {
-            .nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(5,5,16,0.97); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; align-items: center; gap: 32px; z-index: 999; }
-            .nav.nav--open { display: flex; }
-            .nav__link { font-size: 1.4rem; }
-            .mobile-menu-btn { display: flex; }
-            .articles-grid { grid-template-columns: 1fr; }
-            .footer__inner { grid-template-columns: 1fr; gap: 32px; }
-            .footer__bottom { flex-direction: column; text-align: center; }
-        }
     </style>
+
 </head>
 <body class="lang-en">
     <div class="space-bg" aria-hidden="true">
-        <div class="stars" id="starsContainer"></div>
-        <div class="planet planet-1"></div>
-        <div class="planet planet-2"></div>
+        <div class="stars-layer" data-count="50" data-depth="0.4"></div>
+        <div class="stars-layer" data-count="40" data-depth="0.8"></div>
+        <div class="stars-layer" data-count="25" data-depth="1.4"></div>
+        <div class="moon"><span class="moon-crater-3"></span></div>
+        <div class="planet planet-blue"></div>
         <div class="nebula nebula-1"></div>
         <div class="nebula nebula-2"></div>
+        <div class="shooting-star ss-1"></div>
+        <div class="shooting-star ss-2"></div>
+        <div class="shooting-star ss-3"></div>
+        <div class="shooting-star ss-4"></div>
+        <div class="shooting-star ss-5"></div>
+        <div class="dust-layer"></div>
+        <div class="comet">
+            <div class="comet__trail"></div>
+            <div class="comet__head"></div>
+        </div>
+        <div class="satellite"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="3" y1="11" x2="3" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="6" y1="11" x2="6" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <rect x="19" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="22" y1="11" x2="22" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="25" y1="11" x2="25" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <rect x="10" y="9" width="8" height="10" fill="#818cf8" stroke="#e8eaf6" stroke-width="1" rx="1.5"/>
+            <line x1="14" y1="9" x2="14" y2="4" stroke="#e8eaf6" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="14" cy="3" r="1.2" fill="#fef3c7"/>
+        </svg></div>
     </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
 
     <header class="header" id="header">
         <div class="container header__inner">
             <a href="index.html" class="logo">
-                <div class="logo__icon">🌙</div>
+                <img src="logo.png" alt="Moonwalker" class="logo__icon">
                 <span>Moonwalker</span>
             </a>
-            
             <nav class="nav" id="mainNav">
-                <a href="index.html" class="nav__link">
-                    <span class="lang-en">Home</span><span class="lang-ru">Главная</span>
-                </a>
-                <a href="solutions.html" class="nav__link">
-                    <span class="lang-en">Solutions</span><span class="lang-ru">Решения</span>
-                </a>
-                <a href="pricing.html" class="nav__link">
-                    <span class="lang-en">Pricing</span><span class="lang-ru">Цены</span>
-                </a>
-                <a href="about.html" class="nav__link">
-                    <span class="lang-en">About</span><span class="lang-ru">О нас</span>
-                </a>
-                <a href="contact.html" class="nav__link">
-                    <span class="lang-en">Contact</span><span class="lang-ru">Контакты</span>
-                </a>
-                <a href="auth.html" class="nav__link nav__link--cta">
-                    <span class="lang-en">Get Started</span><span class="lang-ru">Начать</span>
-                </a>
+                <a href="index.html" class="nav__link"><span class="lang-en">Home</span><span class="lang-ru">Главная</span></a>
+                <a href="solutions.html" class="nav__link"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                <a href="security.html" class="nav__link"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                <a href="pricing.html" class="nav__link"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                <a href="blog.html" class="nav__link"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                <a href="contact.html" class="nav__link"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                <a href="auth.html" class="nav__link nav__cta"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
             </nav>
-
             <div class="lang-switcher">
-                <button id="langToggle" class="lang-btn" aria-label="Switch Language">
-                    <span class="current-lang">EN</span>
-                </button>
+                <button id="langToggle" class="lang-btn"><span class="current-lang">EN</span></button>
                 <div class="lang-dropdown" id="langDropdown">
-                    <button class="lang-option active" data-lang="en">🇬 English</button>
-                    <button class="lang-option" data-lang="ru">🇷 Русский</button>
+                    <button class="lang-option active" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="ru">Русский</button>
                 </div>
             </div>
-
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
         </div>
     </header>
 
     <main>
-        <!-- Page Hero -->
         <section class="page-hero">
             <div class="container">
-                <h1 class="page-hero__title fade-up">
-                    <span class="lang-en">Help <span class="highlight">Center</span></span>
-                    <span class="lang-ru">Центр <span class="highlight">помощи</span></span>
-                </h1>
-                <p class="page-hero__subtitle fade-up delay-1">
-                    <span class="lang-en">Find answers, guides, and support for everything Moonwalker.</span>
-                    <span class="lang-ru">Найдите ответы, руководства и поддержку по всему Moonwalker.</span>
-                </p>
+                <div class="section__label fade-up"><span class="lang-en">Support</span><span class="lang-ru">Поддержка</span></div>
+                <h1 class="fade-up delay-1"><span class="lang-en">Help <span class="accent">Center</span></span><span class="lang-ru">Центр <span class="accent">помощи</span></span></h1>
+                <p class="fade-up delay-2" style="margin-bottom: 36px;"><span class="lang-en">Find answers, learn the product, and get support — all in one place.</span><span class="lang-ru">Ответы, обучение продукту и поддержка — всё в одном месте.</span></p>
+                <div class="help-search fade-up delay-3">
+                    <input type="text" id="helpSearch" data-placeholder-en="What can we help you with?" data-placeholder-ru="Чем мы можем вам помочь?">
+                </div>
             </div>
         </section>
 
-        <div class="container">
-            <!-- Articles Grid -->
-            <div class="articles-grid">
-                <div class="article-card fade-up">
-                    <div class="article-card__icon">🔐</div>
-                    <h3>
-                        <span class="lang-en">How to Secure Your Account</span>
-                        <span class="lang-ru">Как защитить свой аккаунт</span>
-                    </h3>
-                    <p>
-                        <span class="lang-en">Learn best practices for keeping your account safe with two-factor authentication and strong passwords.</span>
-                        <span class="lang-ru">Изучите лучшие практики защиты аккаунта с помощью двухфакторной аутентификации и надёжных паролей.</span>
-                    </p>
-                    <a href="#" class="article-card__link">
-                        <span class="lang-en">Read more</span>
-                        <span class="lang-ru">Читать далее</span>
-                        →
-                    </a>
+        <section class="section" style="padding-top: 30px;">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label"><span class="lang-en">Popular Articles</span><span class="lang-ru">Популярные статьи</span></div>
+                    <h2 class="section__title"><span class="lang-en">Browse by <span class="accent">topic</span></span><span class="lang-ru">Темы по <span class="accent">категориям</span></span></h2>
                 </div>
-
-                <div class="article-card fade-up delay-1">
-                    <div class="article-card__icon">💸</div>
-                    <h3>
-                        <span class="lang-en">Understanding Transaction Fees</span>
-                        <span class="lang-ru">Понимание комиссий за транзакции</span>
-                    </h3>
-                    <p>
-                        <span class="lang-en">A complete guide to our transparent fee structure and how to minimize costs on international transfers.</span>
-                        <span class="lang-ru">Полное руководство по нашей прозрачной структуре комиссий и как минимизировать расходы на международных переводах.</span>
-                    </p>
-                    <a href="#" class="article-card__link">
-                        <span class="lang-en">Read more</span>
-                        <span class="lang-ru">Читать далее</span>
-                        →
-                    </a>
-                </div>
-
-                <div class="article-card fade-up delay-2">
-                    <div class="article-card__icon">🌍</div>
-                    <h3>
-                        <span class="lang-en">Sending Money Internationally</span>
-                        <span class="lang-ru">Отправка денег за границу</span>
-                    </h3>
-                    <p>
-                        <span class="lang-en">Step-by-step guide to sending money to 150+ countries with the best exchange rates.</span>
-                        <span class="lang-ru">Пошаговое руководство по отправке денег в 150+ стран с лучшими курсами обмена.</span>
-                    </p>
-                    <a href="#" class="article-card__link">
-                        <span class="lang-en">Read more</span>
-                        <span class="lang-ru">Читать далее</span>
-                        →
-                    </a>
-                </div>
-
-                <div class="article-card fade-up">
-                    <div class="article-card__icon">📱</div>
-                    <h3>
-                        <span class="lang-en">Mobile App Features</span>
-                        <span class="lang-ru">Функции мобильного приложения</span>
-                    </h3>
-                    <p>
-                        <span class="lang-en">Discover all the features available in our iOS and Android apps for managing payments on the go.</span>
-                        <span class="lang-ru">Откройте все функции наших приложений для iOS и Android для управления платежами на ходу.</span>
-                    </p>
-                    <a href="#" class="article-card__link">
-                        <span class="lang-en">Read more</span>
-                        <span class="lang-ru">Читать далее</span>
-                        →
-                    </a>
-                </div>
-
-                <div class="article-card fade-up delay-1">
-                    <div class="article-card__icon">🔄</div>
-                    <h3>
-                        <span class="lang-en">Currency Exchange Guide</span>
-                        <span class="lang-ru">Руководство по обмену валют</span>
-                    </h3>
-                    <p>
-                        <span class="lang-en">How to exchange currencies at the best rates and avoid hidden fees in your transactions.</span>
-                        <span class="lang-ru">Как обменивать валюты по лучшим курсам и избегать скрытых комиссий в ваших транзакциях.</span>
-                    </p>
-                    <a href="#" class="article-card__link">
-                        <span class="lang-en">Read more</span>
-                        <span class="lang-ru">Читать далее</span>
-                        →
-                    </a>
-                </div>
-
-                <div class="article-card fade-up delay-2">
-                    <div class="article-card__icon">⚡</div>
-                    <h3>
-                        <span class="lang-en">Speeding Up Your Transfers</span>
-                        <span class="lang-ru">Ускорение ваших переводов</span>
-                    </h3>
-                    <p>
-                        <span class="lang-en">Tips and tricks to ensure your payments are processed as quickly as possible.</span>
-                        <span class="lang-ru">Советы и рекомендации для максимально быстрой обработки ваших платежей.</span>
-                    </p>
-                    <a href="#" class="article-card__link">
-                        <span class="lang-en">Read more</span>
-                        <span class="lang-ru">Читать далее</span>
-                        →
-                    </a>
-                </div>
-            </div>
-
-            <!-- FAQ Section -->
-            <div class="faq-section">
-                <div class="section-header fade-up">
-                    <h2>
-                        <span class="lang-en">Frequently Asked Questions</span>
-                        <span class="lang-ru">Часто задаваемые вопросы</span>
-                    </h2>
-                    <p>
-                        <span class="lang-en">Quick answers to common questions</span>
-                        <span class="lang-ru">Быстрые ответы на распространённые вопросы</span>
-                    </p>
-                </div>
-
-                <div class="faq-item fade-up">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="lang-en">How do I create an account?</span>
-                        <span class="lang-ru">Как создать аккаунт?</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <span class="lang-en">Click the "Get Started" button, fill in your email and create a password. You'll receive a verification email to confirm your account. The whole process takes less than 2 minutes.</span>
-                            <span class="lang-ru">Нажмите кнопку "Начать", введите email и создайте пароль. Вы получите письмо для подтверждения аккаунта. Весь процесс занимает менее 2 минут.</span>
+                <div class="help-grid">
+                    <div class="help-card fade-up">
+                        <div class="help-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
+                        <h3><span class="lang-en">How to Secure Your Account</span><span class="lang-ru">Как защитить аккаунт</span></h3>
+                        <p><span class="lang-en">Enable 2FA, manage sessions, and review login history.</span><span class="lang-ru">Включите 2FA, управляйте сессиями и проверяйте историю входов.</span></p>
                     </div>
-                </div>
-
-                <div class="faq-item fade-up delay-1">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="lang-en">What currencies do you support?</span>
-                        <span class="lang-ru">Какие валюты вы поддерживаете?</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <span class="lang-en">We support 50+ currencies including USD, EUR, GBP, JPY, and many more. You can hold, exchange, and send money in multiple currencies from one account.</span>
-                            <span class="lang-ru">Мы поддерживаем 50+ валют, включая USD, EUR, GBP, JPY и многие другие. Вы можете хранить, обменивать и отправлять деньги в нескольких валютах из одного аккаунта.</span>
+                    <div class="help-card fade-up delay-1">
+                        <div class="help-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         </div>
+                        <h3><span class="lang-en">Understanding Transaction Fees</span><span class="lang-ru">Понимание комиссий</span></h3>
+                        <p><span class="lang-en">A breakdown of every fee — domestic, international, FX, and card.</span><span class="lang-ru">Разбор всех комиссий — внутренние, международные, FX и карточные.</span></p>
                     </div>
-                </div>
-
-                <div class="faq-item fade-up delay-2">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="lang-en">How long do transfers take?</span>
-                        <span class="lang-ru">Сколько времени занимают переводы?</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <span class="lang-en">Most transfers are completed in under 0.3 seconds. International transfers typically arrive within 1-2 business days, depending on the destination country and payment method.</span>
-                            <span class="lang-ru">Большинство переводов завершаются менее чем за 0.3 секунды. Международные переводы обычно поступают в течение 1-2 рабочих дней в зависимости от страны назначения и способа оплаты.</span>
+                    <div class="help-card fade-up delay-2">
+                        <div class="help-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                         </div>
+                        <h3><span class="lang-en">Sending Money Internationally</span><span class="lang-ru">Международные переводы</span></h3>
+                        <p><span class="lang-en">Step-by-step guide to your first cross-border transfer.</span><span class="lang-ru">Пошаговое руководство по первому международному переводу.</span></p>
                     </div>
-                </div>
-
-                <div class="faq-item fade-up">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="lang-en">What are your fees?</span>
-                        <span class="lang-ru">Какие у вас комиссии?</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <span class="lang-en">We charge competitive fees starting from 1.5% for domestic transfers and 2.5% for international. Check our Pricing page for detailed information. No hidden fees, ever.</span>
-                            <span class="lang-ru">Мы взимаем конкурентные комиссии от 1.5% за внутренние переводы и 2.5% за международные. Подробная информация на странице Тарифы. Никаких скрытых комиссий.</span>
+                    <div class="help-card fade-up">
+                        <div class="help-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                         </div>
+                        <h3><span class="lang-en">Mobile App Features</span><span class="lang-ru">Функции мобильного приложения</span></h3>
+                        <p><span class="lang-en">All the things you can do on iOS and Android — quick reference.</span><span class="lang-ru">Что можно делать в iOS и Android — справочник.</span></p>
                     </div>
-                </div>
-
-                <div class="faq-item fade-up delay-1">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="lang-en">Is my money safe with Moonwalker?</span>
-                        <span class="lang-ru">Безопасны ли мои деньги в Moonwalker?</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <span class="lang-en">Absolutely. We use bank-grade 256-bit encryption, are PCI DSS Level 1 certified, and comply with all international security standards. Your funds are protected and insured.</span>
-                            <span class="lang-ru">Абсолютно. Мы используем банковское шифрование 256-bit, сертифицированы по стандарту PCI DSS Level 1 и соответствуем всем международным стандартам безопасности. Ваши средства защищены и застрахованы.</span>
+                    <div class="help-card fade-up delay-1">
+                        <div class="help-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/></svg>
                         </div>
+                        <h3><span class="lang-en">Currency Exchange Guide</span><span class="lang-ru">Руководство по обмену валют</span></h3>
+                        <p><span class="lang-en">How our mid-market FX works and how to lock in rates.</span><span class="lang-ru">Как работает mid-market FX и как зафиксировать курсы.</span></p>
                     </div>
-                </div>
-
-                <div class="faq-item fade-up delay-2">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        <span class="lang-en">How do I contact support?</span>
-                        <span class="lang-ru">Как связаться с поддержкой?</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <span class="lang-en">You can reach our support team 24/7 through our Contact page, email at support@moonwalker.com, or use the live chat feature in your account dashboard.</span>
-                            <span class="lang-ru">Вы можете связаться с нашей командой поддержки 24/7 через страницу Контакты, email support@moonwalker.com или использовать чат в панели управления аккаунтом.</span>
+                    <div class="help-card fade-up delay-2">
+                        <div class="help-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                         </div>
+                        <h3><span class="lang-en">Speeding Up Your Transfers</span><span class="lang-ru">Ускорение переводов</span></h3>
+                        <p><span class="lang-en">Why some transfers take seconds and others take minutes.</span><span class="lang-ru">Почему одни переводы занимают секунды, а другие — минуты.</span></p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Contact CTA -->
-            <div class="contact-cta fade-up">
-                <h2>
-                    <span class="lang-en">Still need help?</span>
-                    <span class="lang-ru">Всё ещё нужна помощь?</span>
-                </h2>
-                <p>
-                    <span class="lang-en">Our support team is here to help you 24/7. Get in touch and we'll respond as soon as possible.</span>
-                    <span class="lang-ru">Наша команда поддержки здесь, чтобы помочь вам 24/7. Свяжитесь с нами, и мы ответим как можно скорее.</span>
-                </p>
-                <a href="contact.html" class="btn btn--primary">
-                    <span class="lang-en">Contact Support</span>
-                    <span class="lang-ru">Связаться с поддержкой</span>
-                </a>
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section__header fade-up">
+                    <div class="section__label">FAQ</div>
+                    <h2 class="section__title"><span class="lang-en">Frequently <span class="accent">asked</span></span><span class="lang-ru">Часто <span class="accent">спрашиваемое</span></span></h2>
+                </div>
+                <div class="faq__list">
+                    <div class="faq-item fade-up">
+                        <button class="faq-question"><span class="lang-en">How long does verification take?</span><span class="lang-ru">Сколько занимает верификация?</span></button>
+                        <div class="faq-answer"><div class="faq-answer__inner"><span class="lang-en">Personal accounts: under 5 minutes with AI document scanning. Business accounts: 1–2 business days. Expedited verification is available for established businesses.</span><span class="lang-ru">Личные: до 5 минут с ИИ-сканированием. Бизнес: 1–2 рабочих дня. Ускоренная верификация доступна для устоявшихся компаний.</span></div></div>
+                    </div>
+                    <div class="faq-item fade-up delay-1">
+                        <button class="faq-question"><span class="lang-en">What if a transfer fails?</span><span class="lang-ru">Что если перевод не прошёл?</span></button>
+                        <div class="faq-answer"><div class="faq-answer__inner"><span class="lang-en">Funds are automatically returned to your wallet within minutes. You'll see a clear reason in your dashboard, and our support team is notified for anything non-trivial.</span><span class="lang-ru">Средства автоматически возвращаются в кошелёк за минуты. Причина видна в кабинете, а команда поддержки уведомляется о нестандартных случаях.</span></div></div>
+                    </div>
+                    <div class="faq-item fade-up delay-2">
+                        <button class="faq-question"><span class="lang-en">How do I close my account?</span><span class="lang-ru">Как закрыть аккаунт?</span></button>
+                        <div class="faq-answer"><div class="faq-answer__inner"><span class="lang-en">Go to Settings → Account → Close account. We'll guide you through withdrawing your balance to a verified bank. The process completes within one business day.</span><span class="lang-ru">Настройки → Аккаунт → Закрыть. Мы проведём вас через вывод баланса на верифицированный банк. Процесс — за один рабочий день.</span></div></div>
+                    </div>
+                    <div class="faq-item fade-up delay-3">
+                        <button class="faq-question"><span class="lang-en">I forgot my password — what now?</span><span class="lang-ru">Забыл пароль — что делать?</span></button>
+                        <div class="faq-answer"><div class="faq-answer__inner"><span class="lang-en">Use the "Forgot password" link on the sign-in page. We'll email a reset link valid for 30 minutes. If you don't receive it, check spam or contact support.</span><span class="lang-ru">Используйте «Забыли пароль» на странице входа. Ссылка для сброса действует 30 минут. Не пришло — проверьте спам или напишите в поддержку.</span></div></div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(34, 211, 238, 0.1)); border: 1px solid var(--glass-border-strong); border-radius: var(--radius-xl); padding: 60px 40px; text-align: center;" class="fade-up">
+                    <h2 style="font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 14px; letter-spacing: -0.02em;"><span class="lang-en">Still need help?</span><span class="lang-ru">Всё ещё нужна помощь?</span></h2>
+                    <p style="color: var(--text-soft); max-width: 580px; margin: 0 auto 28px;"><span class="lang-en">Our support team is available 24/7 — usually responding in under an hour.</span><span class="lang-ru">Поддержка доступна 24/7 — обычно отвечает в течение часа.</span></p>
+                    <a href="contact.html" class="btn btn--primary"><span class="lang-en">Contact support</span><span class="lang-ru">Связаться с поддержкой</span></a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -665,116 +320,105 @@
             <div class="footer__inner">
                 <div class="footer__col footer__brand">
                     <a href="index.html" class="logo">
-                        <div class="logo__icon">🌙</div>
+                        <img src="logo.png" alt="Moonwalker" class="logo__icon">
                         <span>Moonwalker</span>
                     </a>
-                    <p>
-                        <span class="lang-en">Next-gen payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span>
-                        <span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span>
-                    </p>
+                    <p><span class="lang-en">Next-generation payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span><span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span></p>
                 </div>
                 <div class="footer__col">
                     <h4><span class="lang-en">Product</span><span class="lang-ru">Продукт</span></h4>
                     <a href="solutions.html"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
-                    <a href="#"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
+                    <a href="security.html"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                    <a href="pricing.html"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                    <a href="integrations.html"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
                 </div>
                 <div class="footer__col">
                     <h4><span class="lang-en">Company</span><span class="lang-ru">Компания</span></h4>
                     <a href="about.html"><span class="lang-en">About</span><span class="lang-ru">О нас</span></a>
                     <a href="blog.html"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
                 </div>
                 <div class="footer__col">
                     <h4><span class="lang-en">Support</span><span class="lang-ru">Поддержка</span></h4>
                     <a href="help.html"><span class="lang-en">Help Center</span><span class="lang-ru">Центр помощи</span></a>
-                    <a href="contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                    <a href="contact.html"><span class="lang-en">Contact us</span><span class="lang-ru">Связаться</span></a>
+                    <a href="auth.html"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2026 Moonwalker Financial Technologies. All rights reserved.</p>
+                <p>© 2026 Moonwalker Financial Technologies.</p>
                 <div class="footer__bottom-links">
                     <a href="privacy.html"><span class="lang-en">Privacy</span><span class="lang-ru">Конфиденциальность</span></a>
                     <a href="terms.html"><span class="lang-en">Terms</span><span class="lang-ru">Условия</span></a>
-                    <a href="cookies.html"><span class="lang-en">Cookies</span><span class="lang-ru">Куки</span></a>
+                    <a href="cookies.html">Cookies</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Generate stars
-        (function() {
-            const container = document.getElementById('starsContainer');
-            if (!container) return;
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                const classes = ['star-tiny', 'star-small', 'star-medium', 'star-bright'];
-                star.className = 'star ' + classes[Math.floor(Math.random() * classes.length)];
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                container.appendChild(star);
-            }
-        })();
+    <script src="assets/main.js"></script>
+<script src="assets/main.js"></script>
+<script>
+    // Переопределяем инициализацию FAQ после загрузки страницы
+    (function() {
+        // Ждём, пока DOM загрузится
+        function initFAQ() {
+            var faqItems = document.querySelectorAll('.faq-item');
+            var faqQuestions = document.querySelectorAll('.faq-question');
+            
+            if (faqQuestions.length === 0) return;
+            
+            // Удаляем старые обработчики (если были) и добавляем новые
+            faqQuestions.forEach(function(btn) {
+                // Убираем старый обработчик, если он был добавлен main.js
+                var newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+                
+                newBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    var item = this.parentElement;
+                    var answer = item.querySelector('.faq-answer');
+                    var isActive = item.classList.contains('active');
+                    
+                    // Закрываем все
+                    document.querySelectorAll('.faq-item').forEach(function(fi) {
+                        fi.classList.remove('active');
+                        var a = fi.querySelector('.faq-answer');
+                        if (a) a.style.maxHeight = null;
+                    });
+                    
+                    // Открываем текущий, если он не был активен
+                    if (!isActive && answer) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+            });
+        }
+        
+        // Запускаем после загрузки DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFAQ);
+        } else {
+            initFAQ();
+        }
+    })();
 
-        // Language Switcher
-        const langToggle = document.getElementById('langToggle');
-        const langDropdown = document.getElementById('langDropdown');
-        const langOptions = document.querySelectorAll('.lang-option');
-        const currentLangSpan = document.querySelector('.current-lang');
-
-        langToggle.addEventListener('click', function(e) { e.stopPropagation(); langDropdown.classList.toggle('open'); });
-        document.addEventListener('click', function(e) { if (!langToggle.contains(e.target) && !langDropdown.contains(e.target)) { langDropdown.classList.remove('open'); } });
-        langOptions.forEach(function(opt) {
-            opt.addEventListener('click', function() {
-                var lang = opt.getAttribute('data-lang');
-                document.body.className = 'lang-' + lang;
-                currentLangSpan.textContent = lang.toUpperCase();
-                langOptions.forEach(function(o) { o.classList.remove('active'); });
-                opt.classList.add('active');
-                langDropdown.classList.remove('open');
-                localStorage.setItem('moonwalker-lang', lang);
+    // ===== SEARCH FILTER =====
+    var searchInput = document.getElementById('helpSearch');
+    var helpCards = document.querySelectorAll('.help-card');
+    
+    if (searchInput && helpCards.length) {
+        searchInput.addEventListener('input', function() {
+            var query = searchInput.value.toLowerCase().trim();
+            helpCards.forEach(function(card) {
+                var text = card.textContent.toLowerCase();
+                card.style.display = (!query || text.indexOf(query) >= 0) ? '' : 'none';
             });
         });
-        var savedLang = localStorage.getItem('moonwalker-lang');
-        if (savedLang) {
-            document.body.className = 'lang-' + savedLang;
-            currentLangSpan.textContent = savedLang.toUpperCase();
-            langOptions.forEach(function(o) { o.classList.toggle('active', o.getAttribute('data-lang') === savedLang); });
-        }
-
-        // Mobile Menu
-        var mobileBtn = document.getElementById('mobileMenuBtn');
-        var nav = document.getElementById('mainNav');
-        mobileBtn.addEventListener('click', function() { nav.classList.toggle('nav--open'); mobileBtn.classList.toggle('active'); });
-        nav.querySelectorAll('.nav__link').forEach(function(link) { link.addEventListener('click', function() { nav.classList.remove('nav--open'); mobileBtn.classList.remove('active'); }); });
-
-        // Header scroll
-        var header = document.getElementById('header');
-        window.addEventListener('scroll', function() { header.classList.toggle('scrolled', window.scrollY > 50); });
-
-        // FAQ Toggle
-        function toggleFaq(btn) {
-            const item = btn.parentElement;
-            const answer = btn.nextElementSibling;
-            const isActive = item.classList.contains('active');
-            
-            // Close all FAQ items
-            document.querySelectorAll('.faq-item').forEach(faq => {
-                faq.classList.remove('active');
-                faq.querySelector('.faq-answer').style.maxHeight = null;
-            });
-            
-            // Open clicked item if it wasn't active
-            if (!isActive) {
-                item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-            }
-        }
-
-        // Scroll Animations
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
-    </script>
+    }
+</script>
 </body>
 </html>
