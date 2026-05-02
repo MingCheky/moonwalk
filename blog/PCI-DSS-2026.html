@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding PCI DSS Compliance in 2026 | Moonwalker</title>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style.css">
+    <style>
+        .article-hero { padding: 160px 0 60px; text-align: center; }
+        .article-hero__cat {
+            display: inline-block; padding: 5px 14px;
+            background: rgba(99, 102, 241, 0.15); border-radius: 999px;
+            font-size: 0.78rem; font-weight: 600; color: var(--accent-light);
+            margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.08em;
+        }
+        .article-hero h1 {
+            font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+            line-height: 1.15; letter-spacing: -0.025em;
+            max-width: 820px; margin: 0 auto 24px;
+        }
+        .article-hero__meta {
+            display: flex; justify-content: center; gap: 22px;
+            color: var(--text-muted); font-size: 0.9rem; flex-wrap: wrap;
+        }
+        .article-hero__meta span { display: flex; align-items: center; gap: 6px; }
+        .article-cover { max-width: 1080px; margin: 40px auto 70px; padding: 0 24px; }
+        .article-cover img {
+            width: 100%; aspect-ratio: 16/8; object-fit: cover;
+            border-radius: var(--radius-lg); border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+        }
+        .article-body {
+            max-width: 760px; margin: 0 auto 120px; padding: 0 24px;
+            font-size: 1.05rem; line-height: 1.85; color: var(--text-soft);
+        }
+        .article-body h2 {
+            font-size: 1.6rem; font-weight: 700; color: #fff;
+            margin: 56px 0 18px; letter-spacing: -0.015em;
+        }
+        .article-body h3 {
+            font-size: 1.2rem; font-weight: 600; color: #fff;
+            margin: 36px 0 12px;
+        }
+        .article-body p { margin-bottom: 18px; }
+        .article-body strong { color: #fff; font-weight: 600; }
+        .article-body ul, .article-body ol { margin: 0 0 22px 22px; }
+        .article-body li { margin-bottom: 8px; }
+        .article-body blockquote {
+            border-left: 3px solid var(--accent); padding: 14px 22px;
+            margin: 26px 0; background: var(--glass);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic; color: var(--text-soft);
+        }
+        .article-body a { color: var(--accent-light); text-decoration: underline; text-underline-offset: 3px; }
+        .article-body a:hover { color: #fff; }
+        .article-cta {
+            background: var(--glass); border: 1px solid var(--glass-border-strong);
+            border-radius: var(--radius-lg); padding: 36px;
+            text-align: center; margin: 56px 0 0; backdrop-filter: blur(14px);
+        }
+        .article-cta h3 { font-size: 1.3rem; margin-bottom: 10px; }
+        .article-cta p { margin-bottom: 22px; color: var(--text-muted); }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--accent-light); font-size: 0.9rem; margin-bottom: 26px;
+        }
+        .back-link:hover { color: #fff; gap: 12px; }
+    </style>
+</head>
+<body class="lang-en">
+
+    <div class="space-bg" aria-hidden="true">
+        <div class="stars-layer" data-count="50" data-depth="0.4"></div>
+        <div class="stars-layer" data-count="35" data-depth="0.9"></div>
+        <div class="shooting-star ss-1"></div>
+        <div class="shooting-star ss-2"></div>
+        <div class="shooting-star ss-3"></div>
+        <div class="shooting-star ss-4"></div>
+        <div class="shooting-star ss-5"></div>
+        <div class="dust-layer"></div>
+        <div class="comet">
+            <div class="comet__trail"></div>
+            <div class="comet__head"></div>
+        </div>
+        <div class="satellite"><svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="3" y1="11" x2="3" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="6" y1="11" x2="6" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <rect x="19" y="11" width="9" height="6" fill="#1e293b" stroke="#22d3ee" stroke-width="1" rx="1"/>
+            <line x1="22" y1="11" x2="22" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <line x1="25" y1="11" x2="25" y2="17" stroke="#22d3ee" stroke-width="0.5" opacity="0.6"/>
+            <rect x="10" y="9" width="8" height="10" fill="#818cf8" stroke="#e8eaf6" stroke-width="1" rx="1.5"/>
+            <line x1="14" y1="9" x2="14" y2="4" stroke="#e8eaf6" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="14" cy="3" r="1.2" fill="#fef3c7"/>
+        </svg></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+    </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="Moonwalker" class="logo__icon">
+                <span>Moonwalker</span>
+            </a>
+            <nav class="nav" id="mainNav">
+                <a href="../index.html" class="nav__link"><span class="lang-en">Home</span><span class="lang-ru">Главная</span></a>
+                <a href="../solutions.html" class="nav__link"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                <a href="../security.html" class="nav__link"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                <a href="../pricing.html" class="nav__link"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                <a href="../blog.html" class="nav__link active"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                <a href="../contact.html" class="nav__link"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                <a href="../auth.html" class="nav__link nav__cta"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
+            </nav>
+            <div class="lang-switcher">
+                <button id="langToggle" class="lang-btn"><span class="current-lang">EN</span></button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <button class="lang-option active" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="ru">Русский</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="article-hero">
+            <div class="container">
+                <a href="../blog.html" class="back-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    <span class="lang-en">Back to Blog</span><span class="lang-ru">Назад в Блог</span>
+                </a>
+                <div class="article-hero__cat">Security</div>
+                <h1>
+                    <span class="lang-en">Understanding PCI DSS Compliance in 2026</span>
+                    <span class="lang-ru">PCI DSS соответствие в 2026 году</span>
+                </h1>
+                <div class="article-hero__meta">
+                    <span>📅 <span class="lang-en">April 22, 2026</span><span class="lang-ru">22 апреля 2026</span></span>
+                    <span>⏱ 8 min</span>
+                    <span>👤 Moonwalker Research</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="article-cover">
+            <img src="../PCI%20DSS.jpg" alt="">
+        </div>
+
+        <article class="article-body">
+            <div class="lang-en">
+<p>If you're handling payment cards in 2026 — even just storing the last four digits — you're under the jurisdiction of <strong>PCI DSS v4.0.1</strong>. The Payment Card Industry Data Security Standard isn't a law, but the major card networks treat it like one. Fall out of compliance and you can lose your ability to accept cards entirely.</p>
+
+<p>This guide cuts through the jargon. Here's what PCI DSS actually requires, what changed in v4.0, and how to think about compliance without burning eighteen months of engineering time.</p>
+
+<h2>What PCI DSS Actually Is</h2>
+<p>PCI DSS is a set of <strong>twelve high-level requirements</strong>, organized into six control objectives, that any organization storing, processing, or transmitting cardholder data must satisfy. The twelve requirements span everything from network segmentation to physical access controls to incident response.</p>
+
+<p>The requirements haven't fundamentally changed since 2004. What has changed is the <strong>scope</strong> — every year, the assessment expectations get sharper, the documentation burden grows, and the gap between "we think we're compliant" and "an auditor agrees" widens.</p>
+
+<h2>The Four Compliance Levels</h2>
+<p>How rigorous your assessment is depends on transaction volume:</p>
+<ul>
+    <li><strong>Level 1</strong> — over 6 million transactions per year, or any organization Visa designates as Level 1. Annual on-site audit by a Qualified Security Assessor (QSA), quarterly network scans, attestation of compliance.</li>
+    <li><strong>Level 2</strong> — 1 to 6 million transactions. Annual self-assessment questionnaire (SAQ), quarterly scans.</li>
+    <li><strong>Level 3</strong> — 20,000 to 1 million e-commerce transactions. Annual SAQ, quarterly scans.</li>
+    <li><strong>Level 4</strong> — fewer than 20,000 e-commerce transactions or up to 1 million total. Annual SAQ, scans recommended.</li>
+</ul>
+<p>Most fintech infrastructure providers — Moonwalker included — operate at Level 1, the most rigorous tier.</p>
+
+<h2>What Changed in v4.0</h2>
+<p>v4.0 replaced v3.2.1 in April 2024 and is now mandatory. The big shifts:</p>
+<h3>Customized approach</h3>
+<p>You can now meet a requirement using a control that achieves the same security objective, even if it doesn't match the prescriptive text. This is huge for cloud-native architectures where the old "anti-virus on every server" rule made no sense.</p>
+<h3>Continuous validation</h3>
+<p>Annual snapshots are out. v4.0 expects you to demonstrate that controls are operating effectively <em>throughout</em> the year — automated monitoring, regular validation, and faster incident response.</p>
+<h3>Stronger authentication</h3>
+<p>Multi-factor authentication is now required for all access to the cardholder data environment, including by administrators inside the perimeter. Passwords-only is dead.</p>
+<h3>Targeted risk analysis</h3>
+<p>Several requirements now let you set the frequency of controls (e.g. how often to review logs) based on a documented risk analysis, rather than a fixed schedule. More flexibility, more documentation responsibility.</p>
+
+<h2>The Twelve Requirements at a Glance</h2>
+<ol>
+    <li>Install and maintain network security controls.</li>
+    <li>Apply secure configurations to all system components.</li>
+    <li>Protect stored account data.</li>
+    <li>Encrypt cardholder data in transit.</li>
+    <li>Protect against malicious software.</li>
+    <li>Develop and maintain secure systems and software.</li>
+    <li>Restrict access to cardholder data by business need-to-know.</li>
+    <li>Identify users and authenticate access.</li>
+    <li>Restrict physical access to cardholder data.</li>
+    <li>Log and monitor all access to system components and cardholder data.</li>
+    <li>Test security of systems and networks regularly.</li>
+    <li>Support information security with policies and programs.</li>
+</ol>
+
+<h2>How to Reduce Scope (and Cost)</h2>
+<p>The fastest way to make PCI compliance manageable is to <strong>reduce scope</strong>. Every system that touches card data falls under audit. Every system that doesn't, doesn't. Two strategies:</p>
+<ul>
+    <li><strong>Tokenization</strong> — replace card numbers with non-sensitive tokens at the point of capture. Your systems handle tokens; the real card data lives in a vault you don't operate.</li>
+    <li><strong>Hosted fields / iframes</strong> — let a PCI-compliant provider render the card input directly. The card data never touches your servers.</li>
+</ul>
+<p>Both approaches let you drop from "Level 1 audit" to "SAQ-A" — the simplest questionnaire — for many use cases.</p>
+
+<blockquote>
+    The cheapest PCI requirement is the one you don't have to meet because the data never enters your environment.
+</blockquote>
+
+<h2>Building on Compliant Infrastructure</h2>
+<p>If you're building a payment product from scratch, the right question isn't "how do we get to PCI Level 1?" — it's "how do we avoid needing to?" Use a PCI Level 1 processor like Moonwalker to handle the cardholder data environment, and your scope shrinks dramatically.</p>
+
+<p>Compliance is a moat. If you can ship features while your competitors are stuck in audit cycles, you win.</p>
+            </div>
+            <div class="lang-ru">
+<p>Если вы работаете с платёжными картами в 2026 году — даже просто храните последние четыре цифры — вы находитесь под юрисдикцией <strong>PCI DSS v4.0.1</strong>. Стандарт безопасности данных платёжной индустрии — это не закон, но крупнейшие карточные сети относятся к нему как к закону. Несоответствие — и вы рискуете потерять возможность принимать карты вообще.</p>
+
+<p>Этот гайд снимает жаргон. Вот что на самом деле требует PCI DSS, что изменилось в v4.0 и как подойти к соответствию, не сжигая восемнадцать месяцев инженерного времени.</p>
+
+<h2>Что такое PCI DSS</h2>
+<p>PCI DSS — это <strong>двенадцать высокоуровневых требований</strong>, сгруппированных по шести целям контроля, которым должны соответствовать все организации, хранящие, обрабатывающие или передающие данные держателей карт. Требования покрывают всё — от сегментации сетей до физического доступа и реакции на инциденты.</p>
+
+<p>Сами требования принципиально не менялись с 2004 года. Что меняется — это <strong>объём оценки</strong>: каждый год ожидания аудиторов становятся жёстче, бумажная нагрузка растёт, а разрыв между «мы думаем, что соответствуем» и «аудитор согласен» — расширяется.</p>
+
+<h2>Четыре уровня соответствия</h2>
+<p>Строгость вашей оценки зависит от объёма транзакций:</p>
+<ul>
+    <li><strong>Level 1</strong> — более 6 млн транзакций в год, либо организации, обозначенные Visa как Level 1. Ежегодный очный аудит QSA, ежеквартальные сканы сети, аттестация соответствия.</li>
+    <li><strong>Level 2</strong> — от 1 до 6 млн транзакций. Ежегодный self-assessment (SAQ), ежеквартальные сканы.</li>
+    <li><strong>Level 3</strong> — от 20 000 до 1 млн e-commerce транзакций. Ежегодный SAQ, ежеквартальные сканы.</li>
+    <li><strong>Level 4</strong> — менее 20 000 e-commerce транзакций или до 1 млн в общей сложности. Ежегодный SAQ, сканы рекомендуются.</li>
+</ul>
+<p>Большинство fintech-инфраструктурных провайдеров, включая Moonwalker, работают на Level 1 — самом строгом уровне.</p>
+
+<h2>Что изменилось в v4.0</h2>
+<p>v4.0 заменил v3.2.1 в апреле 2024 года и теперь обязателен. Главные изменения:</p>
+<h3>Кастомизированный подход</h3>
+<p>Теперь можно соответствовать требованию с помощью контроля, достигающего той же цели безопасности, даже если он не совпадает с предписанным текстом. Это огромный плюс для облачных архитектур, где старое правило «антивирус на каждом сервере» не имело смысла.</p>
+<h3>Непрерывная валидация</h3>
+<p>Ежегодные снимки в прошлом. v4.0 требует продемонстрировать, что контроли работают эффективно <em>в течение всего года</em> — автоматический мониторинг, регулярная валидация и быстрая реакция на инциденты.</p>
+<h3>Сильная аутентификация</h3>
+<p>Мультифакторная аутентификация теперь обязательна для всех доступов к среде данных карт, включая администраторов внутри периметра. Только пароли мертвы.</p>
+<h3>Целевой анализ рисков</h3>
+<p>Несколько требований теперь позволяют настраивать частоту контролей (например, как часто пересматривать логи) на основе документированного анализа рисков, а не фиксированного расписания. Больше гибкости, больше ответственности за документацию.</p>
+
+<h2>Двенадцать требований кратко</h2>
+<ol>
+    <li>Установка и поддержка контролей сетевой безопасности.</li>
+    <li>Безопасные конфигурации всех компонентов системы.</li>
+    <li>Защита хранимых данных счетов.</li>
+    <li>Шифрование данных карт при передаче.</li>
+    <li>Защита от вредоносного ПО.</li>
+    <li>Разработка и поддержка безопасных систем и ПО.</li>
+    <li>Ограничение доступа к данным карт по принципу необходимости.</li>
+    <li>Идентификация пользователей и аутентификация доступа.</li>
+    <li>Ограничение физического доступа к данным карт.</li>
+    <li>Логирование и мониторинг всех доступов.</li>
+    <li>Регулярное тестирование безопасности систем.</li>
+    <li>Поддержка ИБ политиками и программами.</li>
+</ol>
+
+<h2>Как сократить scope (и стоимость)</h2>
+<p>Самый быстрый способ сделать PCI-соответствие управляемым — <strong>сократить scope</strong>. Каждая система, касающаяся данных карт, попадает под аудит. Каждая система, которая не касается, — не попадает. Две стратегии:</p>
+<ul>
+    <li><strong>Токенизация</strong> — замена номеров карт на нечувствительные токены в точке захвата. Ваши системы работают с токенами; реальные данные хранятся в хранилище, которое вы не управляете.</li>
+    <li><strong>Хостед-поля / iframe</strong> — пусть PCI-совместимый провайдер рендерит ввод карты напрямую. Данные карты никогда не касаются ваших серверов.</li>
+</ul>
+<p>Оба подхода позволяют упасть с «Level 1 аудит» до «SAQ-A» — самой простой анкеты — для многих сценариев использования.</p>
+
+<blockquote>
+    Самое дешёвое PCI-требование — это то, которое вам не нужно выполнять, потому что данные никогда не попадают в вашу среду.
+</blockquote>
+
+<h2>Стройте на совместимой инфраструктуре</h2>
+<p>Если вы создаёте платёжный продукт с нуля, правильный вопрос не «как достичь PCI Level 1?», а «как избежать необходимости в этом?». Используйте PCI Level 1 процессор типа Moonwalker для управления средой данных карт, и ваш scope сократится резко.</p>
+
+<p>Соответствие — это ров. Если вы выпускаете фичи, пока ваши конкуренты застряли в аудит-циклах, вы выигрываете.</p>
+            </div>
+
+            <div class="article-cta">
+                <h3><span class="lang-en">Build on PCI-compliant infrastructure</span><span class="lang-ru">Стройте на PCI-совместимой инфраструктуре</span></h3>
+                <p><span class="lang-en">Moonwalker is PCI DSS Level 1 certified — the highest tier. Skip the audit, ship the product.</span><span class="lang-ru">Moonwalker сертифицирован по PCI DSS Level 1 — высший уровень. Пропустите аудит, выпускайте продукт.</span></p>
+                <a href="../auth.html" class="btn btn--primary"><span class="lang-en">Get Started</span><span class="lang-ru">Начать</span></a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__col footer__brand">
+                    <a href="../index.html" class="logo">
+                        <img src="../logo.png" alt="Moonwalker" class="logo__icon">
+                        <span>Moonwalker</span>
+                    </a>
+                    <p><span class="lang-en">Next-generation payment infrastructure. Secure, transparent, and built for the global economy of tomorrow.</span><span class="lang-ru">Платёжная инфраструктура нового поколения. Безопасная, прозрачная, созданная для глобальной экономики будущего.</span></p>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Product</span><span class="lang-ru">Продукт</span></h4>
+                    <a href="../solutions.html"><span class="lang-en">Solutions</span><span class="lang-ru">Решения</span></a>
+                    <a href="../security.html"><span class="lang-en">Security</span><span class="lang-ru">Безопасность</span></a>
+                    <a href="../pricing.html"><span class="lang-en">Pricing</span><span class="lang-ru">Тарифы</span></a>
+                    <a href="../integrations.html"><span class="lang-en">Integrations</span><span class="lang-ru">Интеграции</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Company</span><span class="lang-ru">Компания</span></h4>
+                    <a href="../about.html"><span class="lang-en">About</span><span class="lang-ru">О нас</span></a>
+                    <a href="../blog.html"><span class="lang-en">Blog</span><span class="lang-ru">Блог</span></a>
+                    <a href="../contact.html"><span class="lang-en">Contact</span><span class="lang-ru">Контакты</span></a>
+                </div>
+                <div class="footer__col">
+                    <h4><span class="lang-en">Support</span><span class="lang-ru">Поддержка</span></h4>
+                    <a href="../help.html"><span class="lang-en">Help Center</span><span class="lang-ru">Центр помощи</span></a>
+                    <a href="../contact.html"><span class="lang-en">Contact us</span><span class="lang-ru">Связаться</span></a>
+                    <a href="../auth.html"><span class="lang-en">Sign in</span><span class="lang-ru">Войти</span></a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© 2026 Moonwalker Financial Technologies.</p>
+                <div class="footer__bottom-links">
+                    <a href="../privacy.html"><span class="lang-en">Privacy</span><span class="lang-ru">Конфиденциальность</span></a>
+                    <a href="../terms.html"><span class="lang-en">Terms</span><span class="lang-ru">Условия</span></a>
+                    <a href="../cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/main.js"></script>
+</body>
+</html>
