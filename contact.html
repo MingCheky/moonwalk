@@ -245,8 +245,7 @@
                                 <div class="form-field">
                                     <label for="cTopic"><span class="lang-en">Topic</span><span class="lang-ru">Тема</span></label>
                                     <select id="cTopic" required>
-                                        <option value="" disabled selected class="lang-en">Choose a topic…</option>
-                                        <option value="" disabled selected class="lang-ru">Выберите тему…</option>
+                                        <option value="" disabled selected id="topicDefaultOption">Choose a topic…</option>
                                         <option value="sales"><span class="lang-en">Sales inquiry</span><span class="lang-ru">Продажи</span></option>
                                         <option value="support"><span class="lang-en">Account support</span><span class="lang-ru">Поддержка</span></option>
                                         <option value="partnership"><span class="lang-en">Partnership</span><span class="lang-ru">Партнёрство</span></option>
@@ -350,6 +349,14 @@
         const successDiv = document.getElementById('contactSuccess');
         const sendAnotherBtn = document.getElementById('sendAnother');
 
+        // Update default option text based on language
+        function updateSelectDefaultText() {
+            const defaultOption = document.getElementById('topicDefaultOption');
+            if (!defaultOption) return;
+            const isRu = document.body.classList.contains('lang-ru');
+            defaultOption.textContent = isRu ? 'Выберите тему…' : 'Choose a topic…';
+        }
+
         // Form submit handler
         if (contactForm) {
             contactForm.addEventListener('submit', async function(e) {
@@ -394,6 +401,8 @@
                     if (formWrap) formWrap.style.display = 'none';
                     if (successDiv) successDiv.classList.add('show');
                     contactForm.reset();
+                    // Reset default option after form reset
+                    updateSelectDefaultText();
                     
                 } catch (error) {
                     console.error('Error saving contact:', error);
@@ -420,6 +429,31 @@
                 if (formWrap) formWrap.style.display = 'block';
             });
         }
+
+        // Update placeholders and select text on language change
+        function updatePlaceholders() {
+            const lang = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
+            document.querySelectorAll('[data-placeholder-en][data-placeholder-ru]').forEach(input => {
+                input.placeholder = input.getAttribute(`data-placeholder-${lang}`);
+            });
+            updateSelectDefaultText();
+            
+            // Update options text for language change
+            document.querySelectorAll('#cTopic option:not([id="topicDefaultOption"])').forEach(option => {
+                const enText = option.querySelector('.lang-en')?.textContent;
+                const ruText = option.querySelector('.lang-ru')?.textContent;
+                if (enText && ruText) {
+                    option.textContent = lang === 'en' ? enText : ruText;
+                }
+            });
+        }
+        
+        // Observe language changes
+        const observer = new MutationObserver(() => updatePlaceholders());
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        
+        // Initial update
+        updatePlaceholders();
     </script>
 </body>
 </html>
