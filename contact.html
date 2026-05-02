@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,12 +183,11 @@
         <section class="section" style="padding-top: 30px;">
             <div class="container">
                 <div class="contact-grid">
-                    <!-- Registration form only -->
                     <div class="contact-form-card fade-up">
                         <div id="contactFormWrap">
                             <h2><span class="lang-en">Registration Application</span><span class="lang-ru">Заявка на регистрацию</span></h2>
                             <p><span class="lang-en">Please complete the form below. A response will be sent to the email address you provide.</span><span class="lang-ru">Заполните форму ниже. Ответ будет направлен на указанный вами адрес электронной почты.</span></p>
-                            <form id="contactForm" novalidate>
+                            <form id="registrationForm" novalidate>
                                 <div class="form-row">
                                     <div class="form-field">
                                         <label for="cName"><span class="lang-en">Full name / Company name</span><span class="lang-ru">Имя / Название компании</span></label>
@@ -303,7 +301,7 @@
         const db = firebase.firestore();
 
         // Get form elements
-        const contactForm = document.getElementById('contactForm');
+        const regForm = document.getElementById('registrationForm');
         const formWrap = document.getElementById('contactFormWrap');
         const successDiv = document.getElementById('contactSuccess');
         const sendAnotherBtn = document.getElementById('sendAnother');
@@ -316,9 +314,18 @@
             defaultOption.textContent = isRu ? 'Выберите тип регистрации…' : 'Choose registration type…';
         }
 
+        // Function to show message if toast not available
+        function showMessage(text, type) {
+            if (window.toast) {
+                window.toast(text, type);
+            } else {
+                alert(text);
+            }
+        }
+
         // Form submit handler
-        if (contactForm) {
-            contactForm.addEventListener('submit', async function(e) {
+        if (regForm) {
+            regForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 const name = document.getElementById('cName')?.value.trim() || '';
@@ -330,23 +337,29 @@
                 if (!name || !email || !registrationType) {
                     const lang = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
                     const errorMsg = lang === 'ru' ? 'Заполните обязательные поля.' : 'Please fill in all required fields.';
-                    if (window.toast) {
-                        window.toast(errorMsg, 'error');
-                    } else {
-                        alert(errorMsg);
-                    }
+                    showMessage(errorMsg, 'error');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
+                if (!emailRegex.test(email)) {
+                    const lang = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
+                    const errorMsg = lang === 'ru' ? 'Введите корректный email адрес.' : 'Please enter a valid email address.';
+                    showMessage(errorMsg, 'error');
                     return;
                 }
                 
                 // Disable button and show loading
-                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const submitBtn = regForm.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="lang-en">Submitting...</span><span class="lang-ru">Отправка...</span>';
+                const lang = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
+                submitBtn.innerHTML = lang === 'ru' ? 'Отправка...' : 'Submitting...';
                 
                 try {
-                    // Save registration application to Firestore
-                    await db.collection('registration_applications').add({
+                    // Save registration application to Firestore (collection: registration_applications)
+                    const docRef = await db.collection('registration_applications').add({
                         name: name,
                         email: email,
                         registrationType: registrationType,
@@ -356,24 +369,29 @@
                         source: window.location.pathname
                     });
                     
+                    console.log('Application saved with ID:', docRef.id);
+                    
                     // Show success state
                     if (formWrap) formWrap.style.display = 'none';
                     if (successDiv) successDiv.classList.add('show');
-                    contactForm.reset();
+                    regForm.reset();
                     // Reset default option after form reset
                     updateSelectDefaultText();
                     
                 } catch (error) {
                     console.error('Error saving registration application:', error);
-                    const lang = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
-                    const errorMsg = lang === 'ru' 
+                    const langRu = document.body.classList.contains('lang-ru') ? 'ru' : 'en';
+                    let errorMsg = langRu === 'ru' 
                         ? 'Ошибка при отправке заявки. Пожалуйста, попробуйте позже.' 
                         : 'Error submitting application. Please try again later.';
-                    if (window.toast) {
-                        window.toast(errorMsg, 'error');
-                    } else {
-                        alert(errorMsg);
+                    
+                    // Check for specific Firebase errors
+                    if (error.code === 'permission-denied') {
+                        errorMsg = langRu === 'ru' 
+                            ? 'Нет прав для сохранения. Проверьте правила Firestore.' 
+                            : 'Permission denied. Please check Firestore rules.';
                     }
+                    showMessage(errorMsg, 'error');
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalText;
@@ -416,4 +434,3 @@
     </script>
 </body>
 </html>
-```
